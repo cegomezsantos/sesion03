@@ -2,9 +2,10 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Sandbox Inteligente – Guía Profesional de Prompts</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
+  <title>Sandbox Inteligente – Guía Profesional de Prompts</title>
+  <link rel="stylesheet" href="/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
@@ -14,7 +15,7 @@
 
     <header class="main-header">
       <h1 id="welcomeMessage">Sandbox de Prompts</h1>
-      <p class="subtitle">SESION 3 - Aprende a interactuar con la IA paso a paso</p>
+      <p class="subtitle">SESION 2 - Aprende a interactuar con la IA paso a paso</p>
     </header>
 
     <!-- Paso 1: ¿Qué es un prompt? -->
@@ -29,7 +30,7 @@
           <p>Cuanto más específico seas sobre <u>quién habla</u> (Rol), <u>qué necesitas</u> (Objetivo) y <u>en qué situación</u> (Contexto), mejores y más útiles serán los resultados.</p>
         </div>
         <div class="step-visual">
-          <img src="images/step1-prompt-concept.png" alt="Concepto de un Prompt: una idea o pregunta clara" class="step-image">
+          <img src="/images/step1-prompt-concept.png" alt="Concepto de un Prompt: una idea o pregunta clara" class="step-image">
         </div>
       </div>
     </section>
@@ -58,7 +59,7 @@
                 <span class="part-value">El alumno confunde numerador y denominador</span>
             </div>
              <div class="step-visual">
-               <img src="images/step2-prompt-parts.png" alt="Diagrama mostrando las partes de un prompt" class="step-image">
+               <img src="/images/step2-prompt-parts.png" alt="Diagrama mostrando las partes de un prompt" class="step-image">
              </div>
         </div>
 
@@ -73,9 +74,6 @@
           <h3>Resultado Ejemplo de la IA</h3>
            <button id="toggleOutputBtn" class="btn btn-secondary btn-small">Mostrar Resultado Ejemplo</button>
            <div id="iaOutputContent" class="output-content collapsible-content">
-             <!-- **MODIFICADO:** Eliminada imagen de salida -->
-             <!-- Dentro de la sección id="paso2", dentro de #iaOutputContent -->
-
              <h4>Resumen de Ejemplos</h4>
              <table class="summary-table">
                <thead>
@@ -87,7 +85,6 @@
                </thead>
                <tbody>
                  <tr>
-                   <!-- **NUEVO:** Añadido data-label -->
                    <td data-label="Numerador">2</td>
                    <td data-label="Denominador">5</td>
                    <td data-label="Significado">2 pedazos de una pizza dividida en 5</td>
@@ -104,8 +101,11 @@
                  </tr>
                </tbody>
              </table>
-            <!-- ... resto del contenido ... -->
-             <div class="ejercicio"><h4>Ejercicio práctico</h4> <p>Una pizza está dividida en 10 pedazos iguales...</p><p>Respuesta: <span class="fraccion">4/10</span></p> </div>
+             <div class="ejercicio">
+               <h4>Ejercicio práctico</h4>
+               <p>Una pizza está dividida en 10 pedazos iguales...</p>
+               <p>Respuesta: <span class="fraccion">4/10</span></p>
+             </div>
            </div>
         </div>
       </div>
@@ -126,11 +126,10 @@
                 </ul>
             </div>
              <div class="step-visual">
-               <img src="images/step3-key-takeaways.png" alt="Iconos representando mitos sobre la IA" class="step-image">
+               <img src="/images/step3-key-takeaways.png" alt="Iconos representando mitos sobre la IA" class="step-image">
              </div>
         </div>
     </section>
-
 
     <!-- Paso 4: ¡A Practicar! Define tu Prompt -->
     <section id="paso4" class="step-section animate-on-scroll interactive-step">
@@ -140,10 +139,11 @@
         </div>
         <div class="step-content-column">
              <div class="step-visual">
-               <img src="images/step4-prompt-practice.png" alt="Persona practicando la escritura de prompts" class="step-image small-image">
+               <img src="/images/step4-prompt-practice.png" alt="Persona practicando la escritura de prompts" class="step-image small-image">
              </div>
             <p class="section-description">
-              Define el Rol, Objetivo y Contexto. Haz clic en "Analizar" para recibir feedback sobre tu estructura. Crea un prompt para producir una actividad en clase sobre "las redes sociales y los estudiantes"
+              Define el Rol, Objetivo y Contexto. Haz clic en "Analizar" para recibir feedback sobre tu estructura. Crea un prompt para
+              <em>producir una actividad en clase sobre las redes sociales y los estudiantes</em>.
             </p>
             <form id="warmupForm">
                 <label for="rolInput">Rol</label>
@@ -156,8 +156,8 @@
                 <textarea id="contextoInput" name="contexto" placeholder="Ej: Para principiantes, con ingredientes comunes"></textarea>
 
                 <div class="button-group">
-                <button type="button" id="analyzeBtn" class="btn btn-primary">Analizar Prompt</button>
-                <button type="button" id="retryBtn" class="btn btn-secondary" style="display:none;">Intentar de Nuevo</button>
+                  <button type="button" id="analyzeBtn" class="btn btn-primary">Analizar Prompt</button>
+                  <button type="button" id="retryBtn" class="btn btn-secondary" style="display:none;">Intentar de Nuevo</button>
                 </div>
             </form>
             <div id="step4Feedback" class="feedback animate-feedback" aria-live="polite"></div>
@@ -167,47 +167,4 @@
     <!-- Paso 5: Reto Final: Genera Contenido -->
     <section id="paso5" class="step-section animate-on-scroll interactive-step">
       <div class="step-header">
-        <span class="step-number">5</span>
-        <h2>Reto Final: Genera Contenido</h2>
-      </div>
-      <div class="step-content-column">
-          <div class="step-visual">
-            <img src="images/step5-challenge.png" alt="Icono de reto o desafío" class="step-image small-image">
-          </div>
-        <div class="example-case">
-          <p><strong>Objetivo del Reto:</strong> Generar un cuestionario breve (5 preguntas de opción múltiple) sobre la <em>Guerra del Pacífico</em> para alumnos de secundaria.</p>
-        </div>
-        <div class="student-exercise">
-          <label for="studentPrompt">Escribe tu Prompt Completo Aquí:</label>
-          <textarea id="studentPrompt" name="studentPrompt" placeholder="Ej: 'Crea un cuestionario de 5 preguntas con 3 opciones cada una sobre las causas principales de la Guerra del Pacífico, nivel secundaria...'"></textarea>
-          <button id="evaluatePrompt" class="btn btn-primary">Evaluar Mi Prompt</button>
-
-           <div class="feedback-area">
-                <div id="challengeFeedback" class="feedback animate-feedback" aria-live="polite"></div>
-                <div id="trafficLight">
-                    <span class="light red" title="Prompt necesita mejora"></span>
-                    <span class="light yellow" title="Prompt aceptable"></span>
-                    <span class="light green" title="¡Excelente Prompt!"></span>
-                </div>
-           </div>
-           <!-- **NUEVO:** Mensaje de finalización (oculto por defecto) -->
-           <div id="completionMessage" class="completion-message animate-feedback">
-                <h4>¡Felicitaciones!</h4>
-                <p>Has completado con éxito la práctica de prompts (Sesión 1). ¡Ya puedes aplicar lo aprendido!</p>
-                <a href="https://platform.ecala.net/course/view.php?id=24558" target="_blank" rel="noopener noreferrer" class="btn btn-success">
-                    Volver al Aula Virtual
-                </a>
-           </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="main-footer">
-        <p>Sandbox Inteligente - ¡Sigue practicando!</p>
-    </footer>
-
-  </main>
-
-  <script src="script.js"></script>
-</body>
-</html>
+        <span class="step-number">5

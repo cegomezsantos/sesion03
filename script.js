@@ -1,243 +1,123 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-  // --- Intersection Observer for Animations ---
-  const sectionsToAnimate = document.querySelectorAll('.animate-on-scroll');
-  const observerOptions = { root: null, rootMargin: '0px', threshold: 0.1 };
-  const observerCallback = (entries, observer) => {
+  // 1. Animaciones al hacer scroll
+  const scrollElements = document.querySelectorAll('.animate-on-scroll');
+  const scrollObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
+        entry.target.classList.add('visible');
+        scrollObserver.unobserve(entry.target);
       }
     });
-  };
-  const observer = new IntersectionObserver(observerCallback, observerOptions);
-  sectionsToAnimate.forEach(section => { observer.observe(section); });
-  // --- End Intersection Observer ---
+  }, { threshold: 0.2 });
+  scrollElements.forEach(el => scrollObserver.observe(el));
 
-
-  // --- Saludo Personalizado ---
-  const welcomeMessage = document.getElementById('welcomeMessage');
-  const defaultWelcomeText = welcomeMessage ? welcomeMessage.textContent : "Sandbox de Prompts";
-  try {
-    const params = new URLSearchParams(window.location.search);
-    const userName = params.get('naus');
-    if (welcomeMessage && userName && userName.trim() !== '') {
-      const capitalizedUserName = userName.charAt(0).toUpperCase() + userName.slice(1).toLowerCase();
-      welcomeMessage.textContent = `¡Hola, ${capitalizedUserName}!`;
-      const subtitle = document.querySelector('.main-header .subtitle');
-      if (subtitle) {
-          subtitle.textContent = `Bienvenido/a al Sandbox Inteligente. ${subtitle.textContent}`;
-      }
-    } else if (welcomeMessage) {
-        welcomeMessage.textContent = defaultWelcomeText;
-    }
-  } catch (e) {
-    console.error("Error al procesar parámetros de URL:", e);
-     if (welcomeMessage) welcomeMessage.textContent = defaultWelcomeText;
-  }
-  // --- Fin Saludo Personalizado ---
-
-  // --- Paso 2: Resultado Desplegable ---
-  const toggleOutputBtn = document.getElementById('toggleOutputBtn');
-  const iaOutputContent = document.getElementById('iaOutputContent');
-  if (toggleOutputBtn && iaOutputContent) {
-    toggleOutputBtn.addEventListener('click', () => {
-      const isVisible = iaOutputContent.classList.contains('visible');
-      if (isVisible) {
-        iaOutputContent.classList.remove('visible');
-        toggleOutputBtn.textContent = 'Mostrar Resultado Ejemplo';
-      } else {
-        iaOutputContent.classList.add('visible');
-        toggleOutputBtn.textContent = 'Ocultar Resultado Ejemplo';
-      }
+  // 2. Toggle para mostrar/ocultar resultado de ejemplo (Paso 2)
+  const toggleBtn = document.getElementById('toggleOutputBtn');
+  const exampleContent = document.getElementById('iaOutputContent');
+  if (toggleBtn && exampleContent) {
+    toggleBtn.addEventListener('click', () => {
+      exampleContent.classList.toggle('open');
+      toggleBtn.textContent = exampleContent.classList.contains('open') ? 'Ocultar Resultado Ejemplo' : 'Mostrar Resultado Ejemplo';
     });
   }
 
-  // --- Helper: Show Feedback with Animation ---
-  function showFeedback(element, message, type = 'bad', isLoading = false) {
-      if (!element) return;
-      element.textContent = '';
-      element.className = 'feedback animate-feedback';
-      setTimeout(() => {
-          if (isLoading) {
-              element.innerHTML = `<span class="loader"></span> ${message}`;
-              element.classList.add('feedback--loading');
-          } else {
-              // Asegúrate que el mensaje sea tratado como texto plano
-              element.textContent = message;
-              element.classList.add(`feedback--${type}`);
-          }
-          element.classList.add('visible');
-      }, 10);
-  }
-
-   // --- Helper: Show/Hide Completion Message ---
-    function showCompletionMessage(show = true) {
-        const completionDiv = document.getElementById('completionMessage');
-        if (!completionDiv) return;
-        if (show) {
-            completionDiv.style.display = 'block';
-            setTimeout(() => { completionDiv.classList.add('visible'); }, 10);
-        } else {
-            completionDiv.classList.remove('visible');
-            completionDiv.style.display = 'none';
-        }
-    }
-
-
-  // --- Paso 4: Calentamiento de prompts ---
+  // 3. Análisis de prompt inicial (Paso 4)
   const analyzeBtn = document.getElementById('analyzeBtn');
   const retryBtn = document.getElementById('retryBtn');
+  const rolInput = document.getElementById('rolInput');
+  const objetivoInput = document.getElementById('objetivoInput');
+  const contextoInput = document.getElementById('contextoInput');
   const feedback4 = document.getElementById('step4Feedback');
-  const paso4 = document.getElementById('paso4');
-  const warmupForm = document.getElementById('warmupForm');
-  if (analyzeBtn && feedback4 && paso4 && warmupForm) {
+
+  if (analyzeBtn) {
     analyzeBtn.addEventListener('click', async () => {
-        showFeedback(feedback4, 'Analizando tu prompt...', '', true);
-        if (retryBtn) retryBtn.style.display = 'none';
-        const rol = warmupForm.querySelector('[name="rol"]')?.value.trim() || '';
-        const objetivo = warmupForm.querySelector('[name="objetivo"]')?.value.trim() || '';
-        const contexto = warmupForm.querySelector('[name="contexto"]')?.value.trim() || '';
-
-        if (!rol || !objetivo || !contexto) {
-            showFeedback(feedback4, 'Por favor, completa Rol, Objetivo y Contexto.', 'bad');
-            paso4.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            return;
-        }
-        try {
-            // **REAL API CALL (Step 4)**
-            const res = await fetch('/api/analyze', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ rol, objetivo, contexto })
-            });
-
-            if (!res.ok) {
-                const errorData = await res.json().catch(() => ({ error: `Error HTTP ${res.status}` }));
-                throw new Error(errorData.error || `Error HTTP ${res.status}`);
-            }
-
-            const data = await res.json(); // Expected: { suggestions, score, ok }
-
-            let feedbackType = 'bad';
-            // Usamos 'ok' como principal indicador, luego 'score'
-            if (data.ok === true) {
-                feedbackType = 'good';
-            } else if (data.score !== undefined && data.score >= 50) {
-                 feedbackType = 'okay';
-            }
-
-            // Mostrar sugerencias (puede ser HTML o texto plano)
-            // Si viene como HTML, innerHTML es correcto. Si es texto plano, textContent.
-            // Por seguridad, si no estamos seguros, usamos textContent.
-             if (feedback4) {
-                 feedback4.textContent = ''; // Clear previous content/loader
-                 feedback4.className = 'feedback animate-feedback'; // Reset classes
-             }
-             showFeedback(feedback4, data.suggestions || 'Análisis completado.', feedbackType);
-
-
-            if (feedbackType !== 'good' && retryBtn) {
-                retryBtn.style.display = 'inline-block';
-            }
-
-        } catch (err) {
-            console.error("Error en Paso 4:", err);
-            showFeedback(feedback4, `Error al analizar: ${err.message}. Intenta de nuevo.`, 'bad');
-            if (retryBtn) retryBtn.style.display = 'inline-block';
-        }
-        feedback4.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
-  }
-  if (retryBtn && feedback4 && paso4 && warmupForm) {
-    retryBtn.addEventListener('click', () => {
+      const rol = rolInput.value.trim();
+      const objetivo = objetivoInput.value.trim();
+      const contexto = contextoInput.value.trim();
+      if (!rol || !objetivo || !contexto) {
+        feedback4.textContent = 'Por favor completa todos los campos.';
+        return;
+      }
+      analyzeBtn.disabled = true;
+      analyzeBtn.textContent = 'Analizando...';
       feedback4.textContent = '';
-      feedback4.className = 'feedback animate-feedback';
       retryBtn.style.display = 'none';
-      warmupForm.reset();
-      paso4.querySelector('input[name="rol"]')?.focus();
+      try {
+        const res = await fetch('/api/analyze', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ rol, objetivo, contexto })
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        feedback4.innerHTML = `<strong>Puntaje:</strong> ${data.score} ${data.ok ? '✅' : '❌'}<br>${data.suggestions}`;
+        retryBtn.style.display = 'inline-block';
+      } catch (err) {
+        feedback4.textContent = `Error al analizar: ${err.message}`;
+        retryBtn.style.display = 'inline-block';
+      } finally {
+        analyzeBtn.disabled = false;
+        analyzeBtn.textContent = 'Analizar Prompt';
+      }
     });
   }
 
-  // --- Paso 5: Evaluación semáforo y Finalización ---
-  const evaluateBtn = document.getElementById('evaluatePrompt');
-  const challengeFeedback = document.getElementById('challengeFeedback');
-  const trafficLights = document.querySelectorAll('#trafficLight .light');
-  const studentPromptText = document.getElementById('studentPrompt');
-  const paso5 = document.getElementById('paso5');
-  const completionMessageDiv = document.getElementById('completionMessage');
-
-  function setTrafficLight(level) { // level: 'red', 'yellow', 'green'
-      trafficLights.forEach(light => {
-          light.classList.remove('active');
-          if (level && light.classList.contains(level)) {
-              light.classList.add('active');
-          }
-      });
-  }
-
-  if (evaluateBtn && challengeFeedback && trafficLights.length > 0 && studentPromptText && paso5 && completionMessageDiv) {
-    evaluateBtn.addEventListener('click', async () => {
-        const studentPrompt = studentPromptText.value.trim();
-
-        setTrafficLight(null);
-        showCompletionMessage(false);
-        showFeedback(challengeFeedback, 'Evaluando tu prompt...', '', true);
-
-        if (!studentPrompt) {
-            showFeedback(challengeFeedback, 'Escribe tu prompt antes de evaluar.', 'bad');
-            setTrafficLight('red');
-            paso5.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            return;
-        }
-
-        try {
-            // **REAL API CALL (Step 5)**
-            const res = await fetch('/api/evaluate', {
-                 method: 'POST',
-                 headers: { 'Content-Type': 'application/json' },
-                 body: JSON.stringify({ prompt: studentPrompt })
-             });
-
-             if (!res.ok) {
-                const errorData = await res.json().catch(() => ({ error: `Error HTTP ${res.status}` }));
-                throw new Error(errorData.error || `Error HTTP ${res.status}`);
-            }
-
-            const info = await res.json(); // Expected: { level, feedback }
-
-            // Validar el nivel recibido del backend
-            const validLevels = ['red', 'yellow', 'green'];
-            const level = validLevels.includes(info.level) ? info.level : 'red'; // Default a 'red' si no es válido
-
-             // Mapear nivel ('red', 'yellow', 'green') a tipo de feedback para CSS ('bad', 'okay', 'good')
-            let feedbackType = 'bad';
-            if (level === 'green') feedbackType = 'good';
-            else if (level === 'yellow') feedbackType = 'okay';
-
-            setTrafficLight(level);
-            showFeedback(challengeFeedback, info.feedback || 'Evaluación completada.', feedbackType);
-
-            if (feedbackType === 'okay' || feedbackType === 'good') {
-                 showCompletionMessage(true);
-                 completionMessageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            } else {
-                 showCompletionMessage(false);
-            }
-
-
-        } catch (e) {
-            console.error("Error en Paso 5:", e);
-            showFeedback(challengeFeedback, `Error al evaluar: ${e.message}. Intenta más tarde.`, 'bad');
-            setTrafficLight('red');
-            showCompletionMessage(false);
-        }
-
-        // Scroll al feedback solo si el mensaje de completado NO se muestra
-        if (!completionMessageDiv.classList.contains('visible')) {
-             challengeFeedback.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
+  if (retryBtn) {
+    retryBtn.addEventListener('click', () => {
+      rolInput.value = '';
+      objetivoInput.value = '';
+      contextoInput.value = '';
+      feedback4.textContent = '';
+      retryBtn.style.display = 'none';
     });
   }
 
+  // 4. Evaluación de prompt final (Paso 5)
+  const evalBtn = document.getElementById('evaluatePrompt');
+  const studentPrompt = document.getElementById('studentPrompt');
+  const feedback5 = document.getElementById('challengeFeedback');
+  const lights = document.querySelectorAll('#trafficLight .light');
+  const completionMsg = document.getElementById('completionMessage');
+
+  if (evalBtn) {
+    evalBtn.addEventListener('click', async () => {
+      const promptText = studentPrompt.value.trim();
+      if (!promptText) {
+        feedback5.textContent = 'Escribe tu prompt antes de evaluar.';
+        return;
+      }
+      evalBtn.disabled = true;
+      evalBtn.textContent = 'Evaluando...';
+      feedback5.textContent = '';
+      // Reset traffic lights
+      lights.forEach(light => light.classList.remove('active'));
+      completionMsg.classList.remove('visible');
+
+      try {
+        const res = await fetch('/api/evaluate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ studentPrompt: promptText })
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        // Mostrar feedback
+        feedback5.innerHTML = data.suggestions;
+        // Encender semáforo según resultado
+        if (data.ok) {
+          lights[2].classList.add('active'); // verde
+          completionMsg.classList.add('visible');
+        } else if (data.score >= 50) {
+          lights[1].classList.add('active'); // amarillo
+        } else {
+          lights[0].classList.add('active'); // rojo
+        }
+      } catch (err) {
+        feedback5.textContent = `Error al evaluar: ${err.message}`;
+      } finally {
+        evalBtn.disabled = false;
+        evalBtn.textContent = 'Evaluar Mi Prompt';
+      }
+    });
+  }
 });
