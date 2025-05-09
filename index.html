@@ -4,140 +4,114 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sandbox Inteligente – Guía Profesional de Prompts</title>
+  <title>Sandbox Inteligente – Sesión 2</title>
   <link rel="stylesheet" href="/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body class="scroll-smooth">
-  <main class="container">
-    <header class="main-header animate-on-scroll">
-      <h1 id="welcomeMessage">Sandbox de Prompts</h1>
-      <p class="subtitle">SESION 2 - Aprende a interactuar con la IA paso a paso</p>
-    </header>
+  <!-- Navbar fija con scroll-spy -->
+  <header id="top" class="fixed w-full bg-white/80 backdrop-blur z-50">
+    <nav class="container flex items-center justify-between p-4">
+      <h1 class="text-xl font-bold text-primary-color">Sandbox de Prompts</h1>
+      <ul class="flex gap-4 text-sm">
+        <li><a href="#goals" class="nav-link">Metas</a></li>
+        <li><a href="#recap" class="nav-link">Repaso</a></li>
+        <li><a href="#video1" class="nav-link">Video 1</a></li>
+        <li><a href="#lab-models" class="nav-link">Laboratorio</a></li>
+        <li><a href="#tips" class="nav-link">Estrategias</a></li>
+        <li><a href="#video2" class="nav-link">Video 2</a></li>
+        <li><a href="#prompting" class="nav-link">Prompting</a></li>
+        <li><a href="#sandbox" class="nav-link">Sandbox</a></li>
+        <li><a href="#ethics" class="nav-link">Ética</a></li>
+        <li><a href="#reflection" class="nav-link">Reflexión</a></li>
+      </ul>
+    </nav>
+    <div id="progressbar" class="h-1 bg-primary-color w-0 transition-width"></div>
+  </header>
 
-    <!-- Paso 1: ¿Qué es un prompt? -->
-    <section id="paso1" class="step-section animate-on-scroll">
-      <div class="step-header">
-        <span class="step-number">1</span>
-        <h2>¿Qué es un Prompt?</h2>
-      </div>
-      <div class="step-content">
-        <div class="step-text">
-          <p>Un <strong>prompt</strong> es la <em>instrucción o pregunta</em> que das a la IA para guiar su respuesta. Piensa en ello como dar direcciones claras.</p>
-          <p>Cuanto más específico seas sobre <u>quién habla</u> (Rol), <u>qué necesitas</u> (Objetivo) y <u>en qué situación</u> (Contexto), mejores y más útiles serán los resultados.</p>
-        </div>
-        <div class="step-visual">
-          <img src="/images/step1-prompt-concept.png" alt="Concepto de Prompt" class="step-image">
-        </div>
+  <main class="container pt-24 pb-12">
+    <!-- Sección Metas -->
+    <section id="goals" class="min-h-screen animate-on-scroll">
+      <h2 class="text-2xl font-semibold mb-4">Metas de Aprendizaje</h2>
+      <ul class="list-disc ml-6">
+        <li>Comprender los elementos de un buen prompt.</li>
+        <li>Analizar y mejorar un prompt simple.</li>
+        <li>Experimentar con múltiples modelos de IA.</li>
+      </ul>
+    </section>
+
+    <!-- Sección Repaso -> Mini-quiz Sesión 1 -->
+    <section id="recap" class="min-h-screen animate-on-scroll">
+      <h2 class="text-2xl font-semibold mb-4">Repaso de Sesión 1</h2>
+      <!-- Incluir preguntas MCQ aquí -->
+      <div id="recapQuiz"></div>
+    </section>
+
+    <!-- Sección Video 1 -->
+    <section id="video1" class="min-h-screen animate-on-scroll">
+      <h2 class="text-2xl font-semibold mb-4">Video 1: IA en la Enseñanza</h2>
+      <video controls class="w-full rounded"> <source src="/videos/video1.mp4" type="video/mp4"></video>
+      <button id="summarizeBtn" class="btn btn-secondary mt-4">Resumir con IA</button>
+    </section>
+
+    <!-- Sección Laboratorio de Modelos -->
+    <section id="lab-models" class="min-h-screen animate-on-scroll">
+      <h2 class="text-2xl font-semibold mb-4">Laboratorio: Comparativa de Modelos</h2>
+      <textarea id="labPrompt" placeholder="Escribe tu consulta..."></textarea>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+        <div class="model-panel"><h3>ChatGPT</h3><div class="panel-content"></div></div>
+        <div class="model-panel"><h3>Gemini</h3><div class="panel-content"></div></div>
+        <div class="model-panel"><h3>Grok</h3><div class="panel-content"></div></div>
+        <div class="model-panel"><h3>DeepSeek</h3><div class="panel-content"></div></div>
       </div>
     </section>
 
-    <!-- Paso 2: Partes de un buen prompt -->
-    <section id="paso2" class="step-section animate-on-scroll">
-      <div class="step-header">
-        <span class="step-number">2</span>
-        <h2>Partes de un Buen Prompt</h2>
-      </div>
-      <div class="step-content-column">
-        <div class="example-parts-container">
-          <div class="example-part">
-            <span class="part-label">Rol:</span>
-            <span class="part-value">Eres un tutor de matemáticas paciente</span>
-          </div>
-          <div class="example-part">
-            <span class="part-label">Objetivo:</span>
-            <span class="part-value">Explicar fracciones a un alumno de 12 años</span>
-          </div>
-          <div class="example-part">
-            <span class="part-label">Contexto:</span>
-            <span class="part-value">El alumno confunde numerador y denominador</span>
-          </div>
-          <div class="step-visual">
-            <img src="/images/step2-prompt-parts.png" alt="Partes del Prompt" class="step-image">
-          </div>
-        </div>
-        <div class="example-full-prompt">
-          <p><strong>Prompt Completo (Ejemplo):</strong></p>
-          <div class="prompt-text-box">
-Eres un tutor de matemáticas paciente. Explica fracciones a un alumno de 12 años que confunde numerador y denominador. Usa ejemplos con pizza y termina con un ejercicio práctico.
-          </div>
-        </div>
-        <div class="example-output">
-          <button id="toggleOutputBtn" class="btn btn-secondary btn-small">Mostrar Resultado Ejemplo</button>
-          <div id="iaOutputContent" class="collapsible-content">
-            <h4>Resultado</h4>
-            <p><em>Numerador</em> = pedazos seleccionados; <em>Denominador</em> = total de pedazos.</p>
-          </div>
-        </div>
+    <!-- Sección Estrategias Prácticas -->
+    <section id="tips" class="min-h-screen animate-on-scroll">
+      <h2 class="text-2xl font-semibold mb-4">Cinco Estrategias Prácticas</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- CardFlip para cada estrategia -->
       </div>
     </section>
 
-    <!-- Paso 3: Mitos y Realidades -->
-    <section id="paso3" class="step-section animate-on-scroll">
-      <div class="step-header">
-        <span class="step-number">3</span>
-        <h2>Mitos y Realidades</h2>
-      </div>
-      <div class="step-content">
-        <div class="step-text">
-          <ul class="key-points">
-            <li>¿La IA viene a quitarnos el trabajo? <strong>Para nada.</strong></li>
-            <li>¿Basta con escribir cualquier cosa? <strong>No.</strong> La calidad del prompt define la respuesta.</li>
-            <li>¿Necesito ser programador? <strong>No.</strong> Solo claridad en tu instrucción.</li>
-          </ul>
-        </div>
-        <div class="step-visual">
-          <img src="/images/step3-key-takeaways.png" alt="Mitos sobre IA" class="step-image">
-        </div>
-      </div>
+    <!-- Sección Video 2 -->
+    <section id="video2" class="min-h-screen animate-on-scroll">
+      <h2 class="text-2xl font-semibold mb-4">Video 2: Integración de IA</h2>
+      <video controls class="w-full rounded"> <source src="/videos/video2.mp4" type="video/mp4"></video>
+      <textarea id="ideaInput" placeholder="Escribe tu idea..."></textarea>
+      <button id="coachIdeaBtn" class="btn btn-primary mt-2">Feedback IA</button>
     </section>
 
-    <!-- Paso 4: Práctica inicial -->
-    <section id="paso4" class="step-section animate-on-scroll interactive-step">
-      <div class="step-header">
-        <span class="step-number">4</span>
-        <h2>¡A Practicar! Define tu Prompt</h2>
-      </div>
-      <div class="step-content-column">
-        <p>Define Rol, Objetivo y Contexto. Haz clic en "Analizar" para recibir feedback.</p>
-        <form id="warmupForm">
-          <label for="rolInput">Rol</label>
-          <input id="rolInput" type="text" placeholder="Ej: Eres un chef experto en cocina italiana">
-          <label for="objetivoInput">Objetivo</label>
-          <input id="objetivoInput" type="text" placeholder="Ej: Crear una receta de lasaña simple">
-          <label for="contextoInput">Contexto</label>
-          <textarea id="contextoInput" placeholder="Ej: Para principiantes, con ingredientes comunes"></textarea>
-          <div class="button-group">
-            <button type="button" id="analyzeBtn" class="btn btn-primary">Analizar Prompt</button>
-            <button type="button" id="retryBtn" class="btn btn-secondary">Intentar de Nuevo</button>
-          </div>
-        </form>
-        <div id="step4Feedback" class="feedback"></div>
-      </div>
+    <!-- Sección Taller de Prompting -->
+    <section id="prompting" class="min-h-screen animate-on-scroll">
+      <h2 class="text-2xl font-semibold mb-4">Taller de Prompting</h2>
+      <!-- Wizard de pasos de prompt -->
+      <div id="promptWizard"></div>
     </section>
 
-    <!-- Paso 5: Reto Final -->
-    <section id="paso5" class="step-section animate-on-scroll interactive-step">
-      <div class="step-header">
-        <span class="step-number">5</span>
-        <h2>Reto Final: Genera tu Contenido</h2>
-      </div>
-      <div class="step-content-column">
-        <p>Escribe tu prompt completo y evalúalo.</p>
-        <textarea id="studentPrompt" rows="4" placeholder="Tu prompt aquí..."></textarea>
-        <div id="trafficLight" class="traffic-light">
-          <div class="light red"></div>
-          <div class="light yellow"></div>
-          <div class="light green"></div>
-        </div>
-        <button id="evaluatePrompt" class="btn btn-primary">Evaluar Mi Prompt</button>
-        <div id="challengeFeedback" class="feedback"></div>
-        <div id="completionMessage" class="completion-message">¡Excelente! Tu prompt cumple con todos los criterios.</div>
-      </div>
+    <!-- Sección Sandbox -->
+    <section id="sandbox" class="min-h-screen animate-on-scroll">
+      <h2 class="text-2xl font-semibold mb-4">Sandbox Inteligente</h2>
+      <textarea id="sandboxInput" placeholder="Refina tu prompt..."></textarea>
+      <button id="checkPromptBtn" class="btn btn-primary mt-2">Validar Prompt</button>
+      <div id="trafficLightSandbox" class="traffic-light mt-4"></div>
     </section>
 
+    <!-- Sección Ética y Sesgos -->
+    <section id="ethics" class="min-h-screen animate-on-scroll">
+      <h2 class="text-2xl font-semibold mb-4">Ética y Sesgos</h2>
+      <!-- Drag & drop cards -->
+      <div id="dilemmaCards" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+    </section>
+
+    <!-- Sección Reflexión -->
+    <section id="reflection" class="min-h-screen animate-on-scroll">
+      <h2 class="text-2xl font-semibold mb-4">Auto‑reflexión y Cierre</h2>
+      <textarea id="reflectInput" rows="4" placeholder="Escribe tu reflexión..."></textarea>
+      <button id="generatePlanBtn" class="btn btn-primary mt-2">Generar Plan</button>
+    </section>
   </main>
 
   <script type="module" src="/script.js"></script>
