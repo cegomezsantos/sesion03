@@ -1,58 +1,394 @@
-/* Add this to your existing style.css from Session 2 */
+/* style.css for Sandbox Inteligente – SESIÓN 3 */
 
-/* Style for file upload area */
-.file-upload-area {
+/* --- General Styles --- */
+body {
+    font-family: 'Arial', sans-serif; /* More specific font */
+    line-height: 1.7; /* Slightly increased line height */
+    margin: 0;
+    padding: 20px;
+    background-color: #eef2f7; /* Lighter blue background */
+    color: #333;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #a8d0e6; /* Matching header border */
+    background-color: #d0e0f0; /* Light header background */
+    padding-top: 20px;
+    border-radius: 8px 8px 0 0; /* Rounded top corners */
+}
+
+header h1 {
+    color: #1a2e4a; /* Darker blue for main title */
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #4a6e8a; /* Slightly muted text in header */
+    margin-top: 0;
+}
+
+main {
+    max-width: 950px; /* Slightly wider main content area */
+    margin: 0 auto;
+}
+
+section {
+    background-color: #ffffff; /* White background for sections */
+    padding: 30px; /* Increased padding */
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+}
+
+h1, h2, h3, h4 {
+    color: #0056b3; /* A shade of blue */
+    margin-top: 0;
     margin-bottom: 15px;
+}
+
+h2 {
+    border-bottom: 2px solid #007bff; /* A brighter blue line */
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    color: #004085; /* Darker blue for section titles */
+}
+
+h3 {
+    margin-top: 25px; /* More space above h3 */
+    margin-bottom: 12px;
+    color: #003366; /* Even darker blue */
+}
+
+h4 {
+    color: #0056b3; /* Use the primary blue */
+    margin-bottom: 8px;
+}
+
+
+/* --- Info Blocks Layout (Flexbox) --- */
+.exercise-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px; /* Increased gap */
+    margin-bottom: 30px; /* More space below info */
+    padding: 15px 0; /* Add padding */
+}
+
+.info-block {
+    flex: 1;
+    min-width: 280px; /* Slightly increased min-width */
+    padding: 20px; /* Increased padding */
+    border: 1px dashed #007bff; /* Dashed border matching theme */
+    border-radius: 8px;
+    background-color: #e9f7ff; /* Light blue background */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); /* Inner shadow */
+}
+
+.info-block h4 {
+    margin-top: 0;
+    color: #003366;
+}
+
+.info-block ul, .info-block ol {
+    margin-bottom: 0; /* Remove bottom margin in info blocks */
+    padding-left: 20px;
+}
+.info-block li {
+     margin-bottom: 5px;
+}
+
+
+/* --- Lists and Text --- */
+ul, ol {
+    margin-bottom: 20px;
+    padding-left: 25px; /* Slightly more padding */
+}
+
+li {
+    margin-bottom: 10px; /* Increased space between list items */
+}
+
+pre {
+    background-color: #f8f9fa; /* Lighter background for pre */
+    padding: 18px; /* Increased padding */
+    border-left: 5px solid #007bff; /* Wider left border */
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin-bottom: 15px;
+    font-size: 0.95em; /* Slightly larger font */
+    line-height: 1.5;
+    border-radius: 4px;
+}
+
+
+/* --- Sandbox Area --- */
+.sandbox {
+    border: 2px solid #007bff; /* Solid border matching theme */
+    padding: 25px;
+    margin-top: 30px; /* More space above sandbox */
+    margin-bottom: 30px;
+    background-color: #eef7ff; /* Very light blue background */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.sandbox h3 {
+     margin-top: 0; /* Remove top margin in sandbox */
+     margin-bottom: 15px;
+     color: #004085;
+}
+.sandbox h4 {
+     margin-top: 20px;
+     margin-bottom: 10px;
+     color: #0056b3;
+}
+
+/* --- Inputs (Textarea and Text Input) --- */
+textarea, input[type="text"] {
+    width: calc(100% - 22px); /* Adjust for padding and border */
+    min-height: 120px; /* Increased min-height for textareas */
     padding: 10px;
-    border: 1px dashed #ccc;
-    background-color: #f9f9f9;
+    margin-bottom: 15px; /* Space below inputs */
+    border: 1px solid #ced4da; /* Bootstrap-like border */
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1em;
+    resize: vertical;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+input[type="text"] {
+    min-height: unset; /* Override min-height for text inputs */
+    height: 40px; /* Standard height for text inputs */
+    line-height: 40px; /* Center text vertically */
+    padding: 0 10px; /* Adjust padding for vertical centering */
+}
+
+
+/* --- Buttons --- */
+button {
+    padding: 12px 20px; /* Increased padding */
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px; /* Slightly more rounded corners */
+    cursor: pointer;
+    font-size: 1.05em; /* Slightly larger font */
+    transition: background-color 0.3s ease, transform 0.1s ease; /* Add transform for click effect */
+    margin-right: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:active {
+    background-color: #004085; /* Darker on click */
+    transform: scale(0.98); /* Slightly shrink on click */
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+    transform: none; /* No shrink effect when disabled */
+}
+
+
+/* --- AI Response Display --- */
+.ai-response {
+    margin-top: 20px;
+    padding: 18px;
+    border: 1px solid #a8d0e6; /* Light blue border */
+    background-color: #f0f8ff; /* Very light blue background */
+    border-radius: 5px;
+    min-height: 40px; /* Increased min height */
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 1em;
+    color: #333; /* Default text color */
+}
+
+.ai-response.loading {
+    color: #555;
+    font-style: italic;
+    background-color: #fff; /* White background for loading */
+    border-color: #ccc;
+}
+
+.ai-response.error {
+    color: #dc3545; /* Bootstrap danger red */
+    border-color: #dc3545;
+    background-color: #f8d7da; /* Light red background */
+    font-weight: bold;
+}
+
+/* Optional: Styles for success/warning feedback states */
+.ai-response.success {
+    color: #28a745; /* Bootstrap success green */
+    border-color: #28a745;
+    background-color: #d4edda; /* Light green background */
+}
+
+.ai-response.warning {
+    color: #ffc107; /* Bootstrap warning yellow */
+    border-color: #ffc107;
+    background-color: #fff3cd; /* Light yellow background */
+    font-weight: normal; /* Ensure font is not bold */
+}
+
+
+/* --- Specific Session 3 Elements --- */
+
+/* File Upload Area */
+.file-upload-area {
+    margin-bottom: 20px; /* More space below file area */
+    padding: 15px; /* Increased padding */
+    border: 1px dashed #0056b3; /* Dashed border matching theme */
+    background-color: #eef7ff; /* Light background */
     border-radius: 4px;
 }
 
 .file-upload-area label {
-    display: inline-block;
-    margin-bottom: 5px;
+    display: block; /* Label on its own line */
+    margin-bottom: 8px;
     font-weight: bold;
+    color: #003366;
+}
+
+.file-upload-area input[type="file"] {
+    /* Style the input itself if needed, though styling file inputs is tricky */
+    display: inline-block; /* Keep it inline */
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    border: none; /* Remove default input border */
+    padding: 0; /* Remove default padding */
+    background: none; /* Remove default background */
+    min-height: unset; /* Remove min-height from textarea style */
 }
 
 .file-name {
-    margin-left: 10px;
+    display: block; /* File name on its own line */
+    margin-top: 5px;
     font-style: italic;
     color: #555;
-    font-size: 0.9em;
+    font-size: 0.85em; /* Slightly smaller font */
 }
 
-/* Style for the traffic light indicators */
+
+/* Status Indicators (Traffic Lights) */
 .status-indicator {
     display: inline-block;
-    width: 12px;
-    height: 12px;
+    width: 14px; /* Slightly larger */
+    height: 14px;
     border-radius: 50%;
-    margin-right: 5px;
-    vertical-align: middle; /* Align with text */
+    margin-right: 8px; /* More space to the right */
+    vertical-align: middle;
+    border: 1px solid #ccc; /* Add a subtle border */
 }
 
 .status-green {
-    background-color: green;
+    background-color: #28a745; /* Success green */
 }
 
 .status-yellow {
-    background-color: gold; /* or yellow */
+    background-color: #ffc107; /* Warning yellow */
 }
 
 .status-red {
-    background-color: red;
+    background-color: #dc3545; /* Danger red */
 }
 
-/* Style for the input specifically for links (if using type="text") */
-/* input[type="text"] {
-    width: calc(100% - 24px); // Adjust for padding if needed
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-family: inherit;
-    font-size: 1em;
-} */
-/* Note: The textarea style from Session 2 works fine for the link inputs too,
-   so you might not need the specific input[type="text"] style above. */
+
+/* --- Helper Classes --- */
+.check-icon {
+    color: #28a745; /* Green check */
+    font-weight: bold;
+    font-size: 1.1em; /* Slightly larger */
+}
+
+.highlight {
+    font-weight: bold;
+    color: #0056b3; /* Use a shade of blue */
+}
+
+.motivational {
+    font-style: italic;
+    color: #555;
+    text-align: center;
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px dashed #ccc;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background-color: #ccc;
+    margin: 40px 0;
+}
+
+/* --- Footer/Cierre Styles (if applicable, using generic section style for 'cierre') --- */
+#cierre {
+    text-align: center;
+    font-size: 1.1em;
+    color: #4a6e8a;
+    background-color: #d0e0f0; /* Match header background */
+    border-top: 2px solid #a8d0e6;
+    border-radius: 0 0 8px 8px; /* Rounded bottom corners */
+    padding: 30px;
+    margin-top: -10px; /* Pull it up slightly to meet the last section */
+}
+#cierre h2 {
+     border-bottom: none;
+     margin-bottom: 15px;
+     color: #1a2e4a;
+}
+
+/* --- Responsive Adjustments (Optional but recommended) --- */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    section {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .exercise-info .info-block {
+        min-width: 100%; /* Stack info blocks on small screens */
+        margin-bottom: 15px; /* Add space when stacked */
+    }
+    .exercise-info {
+         gap: 15px; /* Reduce gap on smaller screens */
+    }
+
+    textarea, input[type="text"] {
+        width: calc(100% - 20px); /* Adjust width */
+        padding: 8px;
+    }
+
+    button {
+        padding: 10px 15px;
+        font-size: 1em;
+        margin-right: 5px;
+        margin-bottom: 10px; /* Add margin-bottom if buttons wrap */
+    }
+
+     .sandbox {
+         padding: 15px;
+     }
+
+    .file-upload-area {
+        padding: 10px;
+    }
+
+     .file-name {
+         font-size: 0.8em;
+     }
+}
