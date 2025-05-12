@@ -1,394 +1,336 @@
-/* style.css for Sandbox Inteligente – SESIÓN 3 */
+/* style.css for Sandbox Inteligente – SESIÓN 1 */
+
+/* --- Color Palette (Based on Screenshot) --- */
+:root {
+    --bright-blue: #00bfff; /* Approximately the background blue */
+    --white: #ffffff;
+    --card-background: #ffffff;
+    --card-shadow: rgba(0, 0, 0, 0.1);
+    --red-accent: #ff6347; /* Bright red for numbers and titles */
+    --yellow-highlight: #ffe9a0; /* Light yellow for highlight blocks */
+    --light-yellow-background: #fff4c9; /* Lighter yellow for example areas */
+    --dark-text: #333333;
+    --muted-text: #666666;
+    --border-color: #cccccc; /* General grey border */
+    --red-border: #ff4500; /* Orange-red border for inputs */
+    --button-red: #ff6347;
+    --button-blue: #007bff; /* A standard blue for buttons */
+}
+
 
 /* --- General Styles --- */
 body {
-    font-family: 'Arial', sans-serif; /* More specific font */
-    line-height: 1.7; /* Slightly increased line height */
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
     margin: 0;
-    padding: 20px;
-    background-color: #eef2f7; /* Lighter blue background */
-    color: #333;
+    padding: 0; /* Padding will be on main or sections */
+    background-color: var(--bright-blue);
+    color: var(--dark-text);
 }
 
 header {
     text-align: center;
-    margin-bottom: 40px;
-    padding-bottom: 20px;
-    border-bottom: 2px solid #a8d0e6; /* Matching header border */
-    background-color: #d0e0f0; /* Light header background */
-    padding-top: 20px;
-    border-radius: 8px 8px 0 0; /* Rounded top corners */
+    padding: 40px 20px 20px 20px; /* Top padding for header */
+    color: var(--white);
 }
 
 header h1 {
-    color: #1a2e4a; /* Darker blue for main title */
-    margin-bottom: 10px;
+    margin: 0 0 10px 0;
+    font-size: 2.5em; /* Larger title */
+    font-weight: bold;
 }
 
 header p {
-    color: #4a6e8a; /* Slightly muted text in header */
-    margin-top: 0;
-}
-
-main {
-    max-width: 950px; /* Slightly wider main content area */
-    margin: 0 auto;
-}
-
-section {
-    background-color: #ffffff; /* White background for sections */
-    padding: 30px; /* Increased padding */
-    margin-bottom: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
-}
-
-h1, h2, h3, h4 {
-    color: #0056b3; /* A shade of blue */
-    margin-top: 0;
-    margin-bottom: 15px;
-}
-
-h2 {
-    border-bottom: 2px solid #007bff; /* A brighter blue line */
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    color: #004085; /* Darker blue for section titles */
-}
-
-h3 {
-    margin-top: 25px; /* More space above h3 */
-    margin-bottom: 12px;
-    color: #003366; /* Even darker blue */
-}
-
-h4 {
-    color: #0056b3; /* Use the primary blue */
-    margin-bottom: 8px;
-}
-
-
-/* --- Info Blocks Layout (Flexbox) --- */
-.exercise-info {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 25px; /* Increased gap */
-    margin-bottom: 30px; /* More space below info */
-    padding: 15px 0; /* Add padding */
-}
-
-.info-block {
-    flex: 1;
-    min-width: 280px; /* Slightly increased min-width */
-    padding: 20px; /* Increased padding */
-    border: 1px dashed #007bff; /* Dashed border matching theme */
-    border-radius: 8px;
-    background-color: #e9f7ff; /* Light blue background */
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); /* Inner shadow */
-}
-
-.info-block h4 {
-    margin-top: 0;
-    color: #003366;
-}
-
-.info-block ul, .info-block ol {
-    margin-bottom: 0; /* Remove bottom margin in info blocks */
-    padding-left: 20px;
-}
-.info-block li {
-     margin-bottom: 5px;
-}
-
-
-/* --- Lists and Text --- */
-ul, ol {
-    margin-bottom: 20px;
-    padding-left: 25px; /* Slightly more padding */
-}
-
-li {
-    margin-bottom: 10px; /* Increased space between list items */
-}
-
-pre {
-    background-color: #f8f9fa; /* Lighter background for pre */
-    padding: 18px; /* Increased padding */
-    border-left: 5px solid #007bff; /* Wider left border */
-    overflow-x: auto;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    margin-bottom: 15px;
-    font-size: 0.95em; /* Slightly larger font */
-    line-height: 1.5;
-    border-radius: 4px;
-}
-
-
-/* --- Sandbox Area --- */
-.sandbox {
-    border: 2px solid #007bff; /* Solid border matching theme */
-    padding: 25px;
-    margin-top: 30px; /* More space above sandbox */
-    margin-bottom: 30px;
-    background-color: #eef7ff; /* Very light blue background */
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.sandbox h3 {
-     margin-top: 0; /* Remove top margin in sandbox */
-     margin-bottom: 15px;
-     color: #004085;
-}
-.sandbox h4 {
-     margin-top: 20px;
-     margin-bottom: 10px;
-     color: #0056b3;
-}
-
-/* --- Inputs (Textarea and Text Input) --- */
-textarea, input[type="text"] {
-    width: calc(100% - 22px); /* Adjust for padding and border */
-    min-height: 120px; /* Increased min-height for textareas */
-    padding: 10px;
-    margin-bottom: 15px; /* Space below inputs */
-    border: 1px solid #ced4da; /* Bootstrap-like border */
-    border-radius: 4px;
-    font-family: inherit;
-    font-size: 1em;
-    resize: vertical;
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
-}
-
-input[type="text"] {
-    min-height: unset; /* Override min-height for text inputs */
-    height: 40px; /* Standard height for text inputs */
-    line-height: 40px; /* Center text vertically */
-    padding: 0 10px; /* Adjust padding for vertical centering */
-}
-
-
-/* --- Buttons --- */
-button {
-    padding: 12px 20px; /* Increased padding */
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px; /* Slightly more rounded corners */
-    cursor: pointer;
-    font-size: 1.05em; /* Slightly larger font */
-    transition: background-color 0.3s ease, transform 0.1s ease; /* Add transform for click effect */
-    margin-right: 10px;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-button:active {
-    background-color: #004085; /* Darker on click */
-    transform: scale(0.98); /* Slightly shrink on click */
-}
-
-button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-    opacity: 0.7;
-    transform: none; /* No shrink effect when disabled */
-}
-
-
-/* --- AI Response Display --- */
-.ai-response {
-    margin-top: 20px;
-    padding: 18px;
-    border: 1px solid #a8d0e6; /* Light blue border */
-    background-color: #f0f8ff; /* Very light blue background */
-    border-radius: 5px;
-    min-height: 40px; /* Increased min height */
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    font-size: 1em;
-    color: #333; /* Default text color */
-}
-
-.ai-response.loading {
-    color: #555;
-    font-style: italic;
-    background-color: #fff; /* White background for loading */
-    border-color: #ccc;
-}
-
-.ai-response.error {
-    color: #dc3545; /* Bootstrap danger red */
-    border-color: #dc3545;
-    background-color: #f8d7da; /* Light red background */
-    font-weight: bold;
-}
-
-/* Optional: Styles for success/warning feedback states */
-.ai-response.success {
-    color: #28a745; /* Bootstrap success green */
-    border-color: #28a745;
-    background-color: #d4edda; /* Light green background */
-}
-
-.ai-response.warning {
-    color: #ffc107; /* Bootstrap warning yellow */
-    border-color: #ffc107;
-    background-color: #fff3cd; /* Light yellow background */
-    font-weight: normal; /* Ensure font is not bold */
-}
-
-
-/* --- Specific Session 3 Elements --- */
-
-/* File Upload Area */
-.file-upload-area {
-    margin-bottom: 20px; /* More space below file area */
-    padding: 15px; /* Increased padding */
-    border: 1px dashed #0056b3; /* Dashed border matching theme */
-    background-color: #eef7ff; /* Light background */
-    border-radius: 4px;
-}
-
-.file-upload-area label {
-    display: block; /* Label on its own line */
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #003366;
-}
-
-.file-upload-area input[type="file"] {
-    /* Style the input itself if needed, though styling file inputs is tricky */
-    display: inline-block; /* Keep it inline */
-    margin-bottom: 5px;
-    font-size: 0.9em;
-    border: none; /* Remove default input border */
-    padding: 0; /* Remove default padding */
-    background: none; /* Remove default background */
-    min-height: unset; /* Remove min-height from textarea style */
-}
-
-.file-name {
-    display: block; /* File name on its own line */
-    margin-top: 5px;
-    font-style: italic;
-    color: #555;
-    font-size: 0.85em; /* Slightly smaller font */
-}
-
-
-/* Status Indicators (Traffic Lights) */
-.status-indicator {
-    display: inline-block;
-    width: 14px; /* Slightly larger */
-    height: 14px;
-    border-radius: 50%;
-    margin-right: 8px; /* More space to the right */
-    vertical-align: middle;
-    border: 1px solid #ccc; /* Add a subtle border */
-}
-
-.status-green {
-    background-color: #28a745; /* Success green */
-}
-
-.status-yellow {
-    background-color: #ffc107; /* Warning yellow */
-}
-
-.status-red {
-    background-color: #dc3545; /* Danger red */
-}
-
-
-/* --- Helper Classes --- */
-.check-icon {
-    color: #28a745; /* Green check */
-    font-weight: bold;
-    font-size: 1.1em; /* Slightly larger */
-}
-
-.highlight {
-    font-weight: bold;
-    color: #0056b3; /* Use a shade of blue */
-}
-
-.motivational {
-    font-style: italic;
-    color: #555;
-    text-align: center;
-    margin-top: 25px;
-    padding-top: 15px;
-    border-top: 1px dashed #ccc;
+    margin: 0;
+    font-size: 1.1em;
+    color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
 }
 
 hr {
     border: none;
     height: 1px;
-    background-color: #ccc;
-    margin: 40px 0;
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white line */
+    margin: 30px auto; /* Center the line, adjust spacing */
+    width: 80%; /* Make the line shorter than full width */
 }
 
-/* --- Footer/Cierre Styles (if applicable, using generic section style for 'cierre') --- */
-#cierre {
+main {
+    max-width: 800px; /* Content width closer to screenshot */
+    margin: 20px auto; /* Space above and below main */
+    padding: 0 15px; /* Horizontal padding on main */
+}
+
+section {
+    background-color: var(--card-background);
+    padding: 25px; /* Padding inside cards */
+    margin-bottom: 20px; /* Space between cards */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 5px 15px var(--card-shadow); /* Prominent shadow */
+    position: relative; /* Needed for absolute positioning of number circle */
+}
+
+/* --- Section Titles (Numbered Red Circle + Red Text) --- */
+h2 {
+    color: var(--red-accent);
+    font-size: 1.5em;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-left: 45px; /* Space for the number circle */
+    position: relative; /* Container for absolute positioned circle */
+    border-bottom: none; /* No blue line like in Session 2/3 */
+}
+
+/* The red circle with the number */
+.exercise-number-circle {
+    position: absolute;
+    left: 0; /* Align to the left of the H2 container */
+    top: -5px; /* Adjust vertical alignment */
+    display: flex; /* Use flexbox to center the number */
+    align-items: center;
+    justify-content: center;
+    width: 35px; /* Size of the circle */
+    height: 35px;
+    background-color: var(--red-accent);
+    color: var(--white);
+    border-radius: 50%;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+/* Ensure H2 text aligns well next to the circle */
+h2 .exercise-number-circle + span {
+    display: inline-block; /* Make the text content behave like a block */
+    vertical-align: middle; /* Align text vertically with the circle */
+}
+
+
+/* --- Text Elements --- */
+p {
+    margin-bottom: 15px;
+    color: var(--dark-text);
+}
+
+ul, ol {
+    margin-bottom: 15px;
+    padding-left: 25px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+/* Style for the small, descriptive text */
+section > p, section ul p, section ol p {
+    font-size: 0.95em;
+    color: var(--muted-text); /* Slightly muted color for secondary text */
+}
+
+/* Style for 'Mitos y Realidades' bold words */
+section#mitos-realidades b {
+    color: var(--red-accent); /* Bold words are red */
+}
+
+
+/* --- Highlight Areas (Yellow Background) --- */
+.highlight-area {
+    background-color: var(--yellow-highlight);
+    padding: 20px;
+    border-radius: 6px;
+    margin-bottom: 20px; /* Space below the area */
+}
+
+.highlight-area h3 {
+     margin-top: 0;
+     color: var(--dark-text); /* Heading inside highlight area */
+}
+
+/* Specific styles for input fields within the yellow area */
+.prompt-components label {
+    font-weight: bold;
+    color: var(--dark-text);
+    display: block; /* Label on its own line */
+    margin-bottom: 5px;
+}
+.prompt-components input[type="text"] {
+    width: calc(100% - 24px); /* Adjust for padding and border */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid var(--red-border); /* Red border */
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+/* Style for the example prompt/result area */
+.example-area, .result-area {
+    background-color: var(--light-yellow-background);
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px dashed var(--red-border); /* Dashed red border */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 0.95em;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: var(--dark-text);
+}
+
+
+/* --- Inputs and Textareas (General) --- */
+textarea {
+    width: calc(100% - 24px); /* Adjust for padding and border */
+    min-height: 120px;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 2px solid var(--red-border); /* Red border */
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 1em;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+
+/* --- Buttons --- */
+button {
+    padding: 12px 20px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.05em;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow to buttons */
+    margin-right: 10px;
+    margin-top: 10px; /* Add space above buttons */
+}
+
+/* Specific styles for button colors */
+.btn-red {
+    background-color: var(--button-red);
+}
+.btn-red:hover {
+    background-color: #e0503c; /* Slightly darker red on hover */
+}
+.btn-red:active {
+     background-color: #c04030;
+}
+
+.btn-blue {
+    background-color: var(--button-blue);
+}
+.btn-blue:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+.btn-blue:active {
+     background-color: #004085;
+}
+
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+    box-shadow: none;
+}
+
+
+/* --- AI Response Area (Assuming similar to Session 2/3) --- */
+/* The screenshot doesn't explicitly show the AI response area,
+   but based on Session 2, we'll assume a similar structure */
+.ai-response {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+    background-color: #f8f8f8; /* Light grey */
+    border-radius: 4px;
+    min-height: 30px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 0.95em;
+    color: var(--dark-text);
+}
+
+.ai-response.loading {
+    color: var(--muted-text);
+    font-style: italic;
+}
+
+.ai-response.error {
+    color: #dc3545;
+    border-color: #dc3545;
+    background-color: #f8d7da;
+    font-weight: bold;
+}
+
+
+/* --- Illustrations/Icons --- */
+/* Assumes illustrations are img tags within the flow */
+.illustration {
+    display: block; /* Make images blocks */
+    max-width: 100px; /* Example size, adjust as needed */
+    margin: 15px auto; /* Center the image */
+    height: auto;
+}
+
+/* --- Footer --- */
+footer {
     text-align: center;
-    font-size: 1.1em;
-    color: #4a6e8a;
-    background-color: #d0e0f0; /* Match header background */
-    border-top: 2px solid #a8d0e6;
-    border-radius: 0 0 8px 8px; /* Rounded bottom corners */
-    padding: 30px;
-    margin-top: -10px; /* Pull it up slightly to meet the last section */
-}
-#cierre h2 {
-     border-bottom: none;
-     margin-bottom: 15px;
-     color: #1a2e4a;
+    padding: 20px;
+    margin-top: 40px;
+    color: rgba(255, 255, 255, 0.8); /* Muted white */
+    font-size: 0.9em;
 }
 
-/* --- Responsive Adjustments (Optional but recommended) --- */
+
+/* --- Responsive Adjustments --- */
 @media (max-width: 768px) {
-    body {
-        padding: 15px;
+    header {
+        padding: 30px 15px 15px 15px;
+    }
+     header h1 {
+         font-size: 2em;
+     }
+
+    main {
+        padding: 0 10px;
     }
 
     section {
         padding: 20px;
-        margin-bottom: 20px;
+        margin-bottom: 15px;
     }
 
-    .exercise-info .info-block {
-        min-width: 100%; /* Stack info blocks on small screens */
-        margin-bottom: 15px; /* Add space when stacked */
+    h2 {
+        font-size: 1.3em;
+        padding-left: 40px;
     }
-    .exercise-info {
-         gap: 15px; /* Reduce gap on smaller screens */
+     .exercise-number-circle {
+         width: 30px;
+         height: 30px;
+         font-size: 1.2em;
+     }
+
+    .highlight-area {
+        padding: 15px;
     }
 
     textarea, input[type="text"] {
-        width: calc(100% - 20px); /* Adjust width */
+        width: calc(100% - 20px);
         padding: 8px;
     }
 
     button {
         padding: 10px 15px;
         font-size: 1em;
-        margin-right: 5px;
-        margin-bottom: 10px; /* Add margin-bottom if buttons wrap */
+        margin-right: 8px;
+        margin-top: 8px;
     }
-
-     .sandbox {
-         padding: 15px;
-     }
-
-    .file-upload-area {
-        padding: 10px;
-    }
-
-     .file-name {
-         font-size: 0.8em;
+     /* Stack buttons if needed */
+     .sandbox button {
+         display: block;
+         width: 100%;
+         margin-right: 0;
+         margin-bottom: 10px;
      }
 }
