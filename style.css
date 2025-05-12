@@ -1,336 +1,589 @@
-/* style.css for Sandbox Inteligente – SESIÓN 1 */
+/* style.css for Sandbox Inteligente – SESIÓN 3 (Based on Session 1 MASTER) */
 
-/* --- Color Palette (Based on Screenshot) --- */
+/* --- Import Font from Session 1 Master --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+/* --- CSS Variables (Copied from Session 1 Master) --- */
 :root {
-    --bright-blue: #00bfff; /* Approximately the background blue */
-    --white: #ffffff;
-    --card-background: #ffffff;
-    --card-shadow: rgba(0, 0, 0, 0.1);
-    --red-accent: #ff6347; /* Bright red for numbers and titles */
-    --yellow-highlight: #ffe9a0; /* Light yellow for highlight blocks */
-    --light-yellow-background: #fff4c9; /* Lighter yellow for example areas */
-    --dark-text: #333333;
-    --muted-text: #666666;
-    --border-color: #cccccc; /* General grey border */
-    --red-border: #ff4500; /* Orange-red border for inputs */
-    --button-red: #ff6347;
-    --button-blue: #007bff; /* A standard blue for buttons */
+  --primary-color: #f54526; /* Rojo/Naranja principal */
+  --primary-dark: #e03e20;
+  --secondary-color: #ffc72c; /* Amarillo */
+  --secondary-dark: #f0b300;
+
+  --action-blue: #00AEF0; /* Azul para botones específicos */
+  --action-blue-dark: #0095D0;
+
+  --text-color: #374151; /* Gris oscuro para texto general */
+  --text-light: #6b7280; /* Gris medio */
+
+  --bg-color: #00AEF0; /* Azul claro para el fondo principal de la página */
+  --bg-alt: #ffffff; /* Blanco para cards/secciones */
+
+  --border-color: #e5e7eb; /* Gris claro para bordes generales */
+  --border-focus: var(--primary-color); /* Borde en focus usará el color primario */
+
+  --success-color: #10b981;
+  --success-dark: #047857;
+  --success-bg: #ecfdf5;
+  --warning-color: #f59e0b; /* Naranja */
+  --warning-bg: #fffbeb;
+  --error-color: #ef4444;
+  --error-bg: #fef2f2;
+  --loading-color: #6b7280;
+  --loading-bg: #f3f4f6;
+
+  /* Specific colors from Session 1 master prompt box, adapted for consistency */
+  --prompt-input-bg: #fff4c9; /* Light yellow from Session 1 examples */
+  --prompt-input-border: var(--primary-color); /* Red border from Session 1 inputs */
+  --prompt-input-text: var(--text-color); /* Standard text color */
+
+  --font-family: 'Inter', sans-serif;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  --transition-speed: 0.3s;
 }
 
+/* --- Reset & Base Styles (Adapted from Session 1 Master) --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-/* --- General Styles --- */
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
 body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0; /* Padding will be on main or sections */
-    background-color: var(--bright-blue);
-    color: var(--dark-text);
+  font-family: var(--font-family);
+  background-color: var(--bg-color); /* Blue background */
+  color: var(--text-color);
+  line-height: 1.6;
+  padding: 0; /* Padding handled by container/sections */
 }
 
+/* We'll make the <main> tag act like the .container */
+main {
+  max-width: 900px; /* Use master's container width */
+  margin: 2rem auto; /* Center with spacing */
+  padding: 0 1rem; /* Horizontal padding */
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-color);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+h1 { font-size: 2.25rem; font-weight: 700; }
+h2 { font-size: 1.75rem; font-weight: 700; }
+h3 { font-size: 1.25rem; font-weight: 500; }
+h4 { font-size: 1.1rem; font-weight: 500; margin-bottom: 0.5rem; }
+
+/* Adjust specific headers */
+section h2 { /* All exercise titles */
+  color: var(--primary-color); /* Red/Orange from master */
+  margin-bottom: 0; /* Will use padding below the number/title line */
+  padding-left: 45px; /* Space for the number circle */
+  position: relative; /* Needed for positioning the number */
+  border-bottom: 1px solid var(--border-color); /* Add separator line */
+  padding-bottom: 0.5rem; /* Space between title and the line */
+  margin-bottom: 1.5rem; /* Space below the line */
+}
+section h3 {
+     margin-top: 1.5rem; /* Add space above h3 inside sections */
+}
+section h4 {
+    margin-top: 1rem; /* Add space above h4 inside sections */
+    color: var(--text-color); /* Make h4 dark text */
+}
+
+
+p { margin-bottom: 1rem; color: var(--text-light); }
+a { color: var(--primary-color); text-decoration: none; }
+a:hover { text-decoration: underline; }
+strong, .highlight { /* Use bolding for highlights */
+    font-weight: 700;
+    color: var(--text-color); /* Standard text color for bold */
+}
+em { font-style: italic; }
+ul, ol { margin-left: 1.5rem; margin-bottom: 1rem; }
+li { margin-bottom: 0.5rem; } /* Adjust list item spacing */
+
+/* Style for preformatted text (like example prompts/texts) */
+pre {
+    background-color: #f3f4f6; /* Light grey background */
+    padding: 0.75rem 1rem;
+    border-left: 4px solid var(--primary-color); /* Primary color bar */
+    border-radius: var(--border-radius);
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin-bottom: 1rem;
+    font-family: monospace;
+    font-size: 0.9em;
+    line-height: 1.5;
+    color: var(--text-color);
+}
+
+
+/* --- Header (Adapted from Session 1 Master) --- */
 header {
-    text-align: center;
-    padding: 40px 20px 20px 20px; /* Top padding for header */
-    color: var(--white);
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 3rem 1rem 1.5rem 1rem; /* Adjust padding */
+  color: var(--white); /* White text for header */
 }
-
 header h1 {
-    margin: 0 0 10px 0;
-    font-size: 2.5em; /* Larger title */
-    font-weight: bold;
+    color: var(--white); /* White title in header */
+    margin-bottom: 0.5rem;
 }
-
 header p {
-    margin: 0;
-    font-size: 1.1em;
     color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+    font-size: 1.1rem;
+    margin-bottom: 0;
 }
 
 hr {
     border: none;
     height: 1px;
-    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white line */
-    margin: 30px auto; /* Center the line, adjust spacing */
-    width: 80%; /* Make the line shorter than full width */
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 3rem auto;
+    width: 80%;
 }
 
-main {
-    max-width: 800px; /* Content width closer to screenshot */
-    margin: 20px auto; /* Space above and below main */
-    padding: 0 15px; /* Horizontal padding on main */
+/* --- Step Section Styles (Adapted from Session 1 Master) --- */
+section { /* All sections become cards */
+  background-color: var(--bg-alt); /* White background */
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  margin-bottom: 2.5rem;
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+  position: relative; /* For the number circle */
 }
 
-section {
-    background-color: var(--card-background);
-    padding: 25px; /* Padding inside cards */
-    margin-bottom: 20px; /* Space between cards */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 5px 15px var(--card-shadow); /* Prominent shadow */
-    position: relative; /* Needed for absolute positioning of number circle */
-}
-
-/* --- Section Titles (Numbered Red Circle + Red Text) --- */
-h2 {
-    color: var(--red-accent);
-    font-size: 1.5em;
-    margin-top: 0;
-    margin-bottom: 20px;
-    padding-left: 45px; /* Space for the number circle */
-    position: relative; /* Container for absolute positioned circle */
-    border-bottom: none; /* No blue line like in Session 2/3 */
-}
-
-/* The red circle with the number */
-.exercise-number-circle {
+/* The red circle with the number (Adapted from Session 1 Master's .step-number) */
+.exercise-number-circle { /* Add this class to a span inside each h2 */
     position: absolute;
-    left: 0; /* Align to the left of the H2 container */
-    top: -5px; /* Adjust vertical alignment */
-    display: flex; /* Use flexbox to center the number */
+    left: 0;
+    top: 0; /* Align to the top of the H2 container */
+    transform: translateY(-50%); /* Move up by half its height */
+    display: inline-flex; /* Use flexbox to center the number */
     align-items: center;
     justify-content: center;
-    width: 35px; /* Size of the circle */
-    height: 35px;
-    background-color: var(--red-accent);
-    color: var(--white);
-    border-radius: 50%;
-    font-size: 1.4em;
-    font-weight: bold;
-}
-
-/* Ensure H2 text aligns well next to the circle */
-h2 .exercise-number-circle + span {
-    display: inline-block; /* Make the text content behave like a block */
-    vertical-align: middle; /* Align text vertically with the circle */
-}
-
-
-/* --- Text Elements --- */
-p {
-    margin-bottom: 15px;
-    color: var(--dark-text);
-}
-
-ul, ol {
-    margin-bottom: 15px;
-    padding-left: 25px;
-}
-
-li {
-    margin-bottom: 8px;
-}
-
-/* Style for the small, descriptive text */
-section > p, section ul p, section ol p {
-    font-size: 0.95em;
-    color: var(--muted-text); /* Slightly muted color for secondary text */
-}
-
-/* Style for 'Mitos y Realidades' bold words */
-section#mitos-realidades b {
-    color: var(--red-accent); /* Bold words are red */
-}
-
-
-/* --- Highlight Areas (Yellow Background) --- */
-.highlight-area {
-    background-color: var(--yellow-highlight);
-    padding: 20px;
-    border-radius: 6px;
-    margin-bottom: 20px; /* Space below the area */
-}
-
-.highlight-area h3 {
-     margin-top: 0;
-     color: var(--dark-text); /* Heading inside highlight area */
-}
-
-/* Specific styles for input fields within the yellow area */
-.prompt-components label {
-    font-weight: bold;
-    color: var(--dark-text);
-    display: block; /* Label on its own line */
-    margin-bottom: 5px;
-}
-.prompt-components input[type="text"] {
-    width: calc(100% - 24px); /* Adjust for padding and border */
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 2px solid var(--red-border); /* Red border */
-    border-radius: 4px;
-    font-size: 1em;
-    box-sizing: border-box;
-}
-
-/* Style for the example prompt/result area */
-.example-area, .result-area {
-    background-color: var(--light-yellow-background);
-    padding: 15px;
-    border-radius: 6px;
-    border: 1px dashed var(--red-border); /* Dashed red border */
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-size: 0.95em;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    color: var(--dark-text);
-}
-
-
-/* --- Inputs and Textareas (General) --- */
-textarea {
-    width: calc(100% - 24px); /* Adjust for padding and border */
-    min-height: 120px;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 2px solid var(--red-border); /* Red border */
-    border-radius: 4px;
-    font-family: inherit;
-    font-size: 1em;
-    resize: vertical;
-    box-sizing: border-box;
-}
-
-
-/* --- Buttons --- */
-button {
-    padding: 12px 20px;
+    width: 36px; /* Size of the circle */
+    height: 36px;
+    background-color: var(--primary-color); /* Red/Orange */
     color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1.05em;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow to buttons */
-    margin-right: 10px;
-    margin-top: 10px; /* Add space above buttons */
+    font-weight: 700;
+    border-radius: 50%;
+    margin-right: 1rem; /* Space to the text */
+    font-size: 1.1rem;
+}
+/* Adjust h2 padding to make space for the circle */
+section h2 { padding-left: 45px; }
+
+
+/* --- Info Blocks (Adapted from Session 2 structure, styled with Session 1 palette) --- */
+.exercise-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+    padding: 0; /* Remove padding */
 }
 
-/* Specific styles for button colors */
-.btn-red {
-    background-color: var(--button-red);
-}
-.btn-red:hover {
-    background-color: #e0503c; /* Slightly darker red on hover */
-}
-.btn-red:active {
-     background-color: #c04030;
-}
-
-.btn-blue {
-    background-color: var(--button-blue);
-}
-.btn-blue:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
-.btn-blue:active {
-     background-color: #004085;
+.info-block {
+    flex: 1;
+    min-width: 250px;
+    padding: 15px;
+    border: 1px dashed var(--border-color); /* Dashed border */
+    border-radius: var(--border-radius);
+    background-color: #f9fafb; /* Very light grey */
+    /* box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); Removed inner shadow for simpler look */
 }
 
+.info-block h4 {
+    margin-top: 0;
+    color: var(--text-color); /* Dark text */
+    font-weight: 700; /* Bold h4 in info blocks */
+}
+
+.info-block ul, .info-block ol {
+    margin-bottom: 0;
+    padding-left: 20px;
+}
+.info-block li {
+     margin-bottom: 5px;
+     color: var(--text-light); /* Lighter text for list items in info blocks */
+}
+.info-block p {
+    color: var(--text-light); /* Lighter text for paragraphs in info blocks */
+}
+
+
+/* --- Sandbox Area (Similar to Prompt/Example areas in Master) --- */
+.sandbox {
+    border: 1px solid var(--border-color); /* Simple border */
+    padding: 20px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    background-color: #f9fafb; /* Light grey background */
+    border-radius: var(--border-radius);
+    /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); Removed sandbox shadow */
+}
+.sandbox h3 {
+    margin-top: 0;
+    color: var(--text-color);
+    font-weight: 700; /* Bold h3 in sandbox */
+}
+.sandbox h4 {
+    margin-top: 15px;
+    margin-bottom: 8px;
+    color: var(--text-color);
+    font-weight: 700; /* Bold h4 in sandbox */
+}
+
+
+/* --- Inputs (Textarea and Text Input - Styled like Master Form Inputs) --- */
+textarea, input[type="text"] {
+    width: calc(100% - 2px); /* Full width minus border */
+    min-height: 120px; /* Keep from Session 2 */
+    padding: 0.75rem 1rem; /* Padding from master input */
+    margin-bottom: 15px;
+    border: 1px solid var(--primary-color); /* Primary color border */
+    border-radius: var(--border-radius); /* Rounded corners from master */
+    font-family: var(--font-family); /* Use master font */
+    font-size: 1rem; /* Master font size */
+    resize: vertical;
+    box-sizing: border-box; /* Include padding/border in size */
+    transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+}
+
+input[type="text"] {
+    min-height: unset;
+    height: 40px; /* Standard height */
+    line-height: 40px; /* Vertical align text */
+    padding: 0 1rem; /* Adjust padding */
+}
+
+/* Focus state for inputs */
+textarea:focus, input[type="text"]:focus {
+    outline: none;
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(245, 69, 38, 0.3); /* Primary color glow */
+}
+
+
+/* --- Buttons (Adapted from Session 1 Master) --- */
+button {
+  padding: 0.75rem 1.5rem; /* Padding from master btn */
+  border: none;
+  border-radius: var(--border-radius); /* Rounded corners from master */
+  font-size: 1rem; /* Master font size */
+  font-weight: 500; /* Master font weight */
+  cursor: pointer;
+  text-align: center;
+  transition: background-color var(--transition-speed) ease, transform 0.1s ease;
+  display: inline-flex; /* Align text/icon if any */
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  line-height: 1.2;
+  margin-right: 10px; /* Space between buttons */
+  margin-top: 10px; /* Space above buttons */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+button:hover {
+  transform: translateY(-1px); /* Lift effect on hover */
+}
+button:active {
+    transform: translateY(0px); /* Press effect on click */
+}
+
+/* Specific button colors based on function */
+.evaluate-btn { /* Used for Evaluar Prompt/Enlace/Entrega */
+    background-color: var(--action-blue); /* Blue button */
+    color: #fff;
+}
+.evaluate-btn:hover {
+    background-color: var(--action-blue-dark);
+}
+
+.copy-btn { /* Used for Copy example/text */
+    background-color: var(--secondary-color); /* Yellow button */
+    color: var(--text-color);
+}
+.copy-btn:hover {
+    background-color: var(--secondary-dark);
+    color: var(--text-color);
+}
 
 button:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
     opacity: 0.7;
+    transform: none; /* No transform when disabled */
     box-shadow: none;
 }
 
 
-/* --- AI Response Area (Assuming similar to Session 2/3) --- */
-/* The screenshot doesn't explicitly show the AI response area,
-   but based on Session 2, we'll assume a similar structure */
+/* --- AI Response Display (Adapted from Session 1 Master Feedback) --- */
+/* Base style */
 .ai-response {
-    margin-top: 20px;
-    padding: 15px;
-    border: 1px solid var(--border-color);
-    background-color: #f8f8f8; /* Light grey */
-    border-radius: 4px;
-    min-height: 30px;
-    white-space: pre-wrap;
+    margin-top: 1.5rem; /* Space above */
+    padding: 1rem 1.25rem; /* Padding from master feedback */
+    border-radius: var(--border-radius);
+    font-size: 0.95rem;
+    border: 1px solid var(--border-color); /* Default border */
+    background-color: #f8f8f8; /* Light grey default */
+    min-height: 48px; /* Min height from master feedback */
+    display: flex; /* Use flexbox */
+    align-items: center; /* Center content vertically */
+    gap: 0.75rem; /* Space for potential icon */
+    white-space: pre-wrap; /* Preserve formatting */
     word-wrap: break-word;
-    font-size: 0.95em;
-    color: var(--dark-text);
+    color: var(--text-color); /* Default text color */
 }
 
-.ai-response.loading {
-    color: var(--muted-text);
-    font-style: italic;
+/* Specific states (match master feedback classes) */
+.ai-response.loading { /* Corresponds to feedback--loading */
+  border-color: var(--loading-color);
+  background-color: var(--loading-bg);
+  color: var(--loading-color);
+  font-style: italic;
+}
+/* Add feedback icons if you have them */
+/*
+.ai-response::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    flex-shrink: 0;
+}
+*/
+.ai-response.success { /* Corresponds to feedback--good */
+  border-color: var(--success-color);
+  background-color: var(--success-bg);
+  color: #059669;
+}
+/* .ai-response.success::before { background-image: url('images/feedback-good.png'); } */
+
+
+.ai-response.warning { /* Corresponds to feedback--okay */
+  border-color: var(--warning-color);
+  background-color: var(--warning-bg);
+  color: #b45309;
+}
+/* .ai-response.warning::before { background-image: url('images/feedback-okay.png'); } */
+
+.ai-response.error { /* Corresponds to feedback--bad */
+  border-color: var(--error-color);
+  background-color: var(--error-bg);
+  color: #dc2626;
+  font-weight: bold;
+}
+/* .ai-response.error::before { background-image: url('images/feedback-bad.png'); } */
+
+
+/* --- Specific Session 3 Elements --- */
+
+/* File Upload Area */
+.file-upload-area {
+    margin-bottom: 15px; /* Space below area */
+    padding: 1rem; /* Padding */
+    border: 1px dashed var(--border-color); /* Dashed border */
+    background-color: #f3f4f6; /* Light grey background */
+    border-radius: var(--border-radius);
 }
 
-.ai-response.error {
-    color: #dc3545;
-    border-color: #dc3545;
-    background-color: #f8d7da;
-    font-weight: bold;
+.file-upload-area label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 700; /* Bold label */
+    color: var(--text-color);
 }
 
-
-/* --- Illustrations/Icons --- */
-/* Assumes illustrations are img tags within the flow */
-.illustration {
-    display: block; /* Make images blocks */
-    max-width: 100px; /* Example size, adjust as needed */
-    margin: 15px auto; /* Center the image */
-    height: auto;
-}
-
-/* --- Footer --- */
-footer {
-    text-align: center;
-    padding: 20px;
-    margin-top: 40px;
-    color: rgba(255, 255, 255, 0.8); /* Muted white */
+.file-upload-area input[type="file"] {
+    /* Basic style for file input */
+    display: inline-block;
+    margin-bottom: 0; /* Remove margin */
     font-size: 0.9em;
+    border: none;
+    padding: 0;
+    background: none;
+    min-height: unset;
+    width: auto; /* Allow width to be natural */
+}
+
+.file-name {
+    display: block;
+    margin-top: 5px;
+    font-style: italic;
+    color: var(--text-light); /* Muted text */
+    font-size: 0.85em;
 }
 
 
-/* --- Responsive Adjustments --- */
-@media (max-width: 768px) {
-    header {
-        padding: 30px 15px 15px 15px;
-    }
-     header h1 {
-         font-size: 2em;
-     }
+/* Status Indicators (Traffic Lights from Session 3 text) */
+/* These are small circles within the text, not the full component from Session 1 */
+.status-indicator {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: middle;
+    border: 1px solid #ccc; /* Subtle border */
+}
 
+.status-green { background-color: var(--success-color); border-color: var(--success-dark); }
+.status-yellow { background-color: var(--warning-color); border-color: #e08d00; } /* Use a slightly darker border for visibility */
+.status-red { background-color: var(--error-color); border-color: #c0392b; } /* Use a slightly darker border */
+
+
+/* Exercise 4 Specifics (If included, style like version sections) */
+.exercise4-sandbox {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.version-section {
+    flex: 1;
+    min-width: 300px;
+    padding: 15px;
+    border: 1px dashed var(--border-color); /* Dashed border */
+    border-radius: var(--border-radius);
+    background-color: #f9fafb; /* Light grey background */
+}
+
+.version-section h4 {
+    margin-top: 0;
+    color: var(--text-color);
+    font-weight: 700;
+}
+
+
+/* --- Helper Classes --- */
+.check-icon {
+    color: var(--success-color); /* Green check */
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+
+.motivational {
+    font-style: italic;
+    color: var(--text-light);
+    text-align: center;
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* --- Footer (Adapted from Session 1 Master) --- */
+/* Assuming the last section #cierre acts as a footer */
+#cierre {
+    text-align: center;
+    margin-top: 2.5rem; /* Space above */
+    padding: 2rem;
+    color: var(--text-light); /* Muted text */
+    font-size: 1em;
+    border-top: 1px solid var(--border-color);
+    background-color: #f3f4f6; /* Light grey background */
+    border-radius: var(--border-radius);
+    /* box-shadow and border removed as it's the last element and not a card */
+    box-shadow: none;
+    border: none;
+}
+#cierre h2 {
+    color: var(--text-color); /* Darker title */
+    border-bottom: none; /* No line for the final title */
+    padding-bottom: 0;
+    margin-bottom: 1rem;
+    padding-left: 0; /* No number circle here */
+}
+
+
+/* --- Responsive Adjustments (Adapted from Session 1 Master) --- */
+@media (max-width: 768px) {
     main {
-        padding: 0 10px;
+        margin: 1.5rem auto;
+        padding: 0 0.8rem;
     }
 
     section {
-        padding: 20px;
-        margin-bottom: 15px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
     }
 
-    h2 {
-        font-size: 1.3em;
-        padding-left: 40px;
-    }
-     .exercise-number-circle {
+    h1 { font-size: 2em; }
+    h2 { font-size: 1.4em; padding-left: 40px; } /* Adjust padding for smaller circle */
+    h3 { font-size: 1.1em; }
+
+     .exercise-number-circle { /* Smaller circle */
          width: 30px;
          height: 30px;
-         font-size: 1.2em;
+         font-size: 1em;
      }
 
-    .highlight-area {
-        padding: 15px;
+    .exercise-info .info-block {
+        min-width: 100%; /* Stack info blocks */
+        margin-bottom: 15px;
+    }
+     .exercise-info {
+         gap: 15px;
     }
 
     textarea, input[type="text"] {
-        width: calc(100% - 20px);
-        padding: 8px;
+        width: calc(100% - 2px);
+        padding: 0.6rem 0.8rem; /* Adjust padding */
+        font-size: 0.95rem;
     }
+     input[type="text"] {
+         height: 36px;
+         line-height: 36px;
+         padding: 0 0.8rem;
+     }
+
 
     button {
-        padding: 10px 15px;
-        font-size: 1em;
+        padding: 0.6rem 1.2rem; /* Smaller button padding */
+        font-size: 0.95em;
         margin-right: 8px;
         margin-top: 8px;
     }
-     /* Stack buttons if needed */
-     .sandbox button {
-         display: block;
-         width: 100%;
-         margin-right: 0;
-         margin-bottom: 10px;
+     /* Stack evaluate buttons if desired - currently uses flex line-break */
+
+
+    .sandbox {
+        padding: 1.5rem;
+    }
+
+    .file-upload-area {
+        padding: 0.8rem;
+    }
+
+     .file-name {
+         font-size: 0.8em;
      }
+
+    .ai-response {
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    #cierre {
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+    }
 }
