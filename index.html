@@ -4,314 +4,379 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sandbox Inteligente – SESIÓN 3</title>
+    <!-- Link to the CSS -->
     <link rel="stylesheet" href="style.css">
+    <!-- Link to the Google Font from Session 1 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Sandbox Inteligente – SESIÓN 3 · Prácticas con IA</h1>
-        <p><strong>Público:</strong> Profesores de educación secundaria</p>
-        <p><strong>Objetivo general:</strong> Dominar tres nuevas aplicaciones de IA (Sora, Notebook LM y Google AI Studio) sin repetir lo ya visto en las Sesiones 1-2.</p>
-        <p><strong>Evaluación:</strong> Cada actividad se entrega en el sandbox; la IA del sandbox revisa criterios definidos y ofrece retroalimentación inmediata (aprobado o ajustes).</p>
-    </header>
+    <!-- Use container class from Session 1 master -->
+    <main class="container">
 
-    <main>
-        <section id="ejercicio1">
-            <h2>EJERCICIO 1 · Infografía directa en Sora</h2>
+        <!-- Header styled like main-header from Session 1 -->
+        <header class="main-header">
+            <h1>Sandbox Inteligente – SESIÓN 3 · Prácticas con IA</h1>
+            
+            
+            <!-- Header border handled by main-header padding/border-bottom in CSS -->
+        </header>
 
-            <div class="exercise-info">
-                <div class="info-block">
-                    <h3>Producto final</h3>
-                    <p>Infografía vertical (800 × 1200 px) con 4 bloques (icono + título + texto de 1 línea) sobre: 1) Máquina de vapor 2) Telar mecánico 3) Ferrocarril 4) Iluminación pública</p>
-                </div>
-                <div class="info-block">
-                    <h3>Herramienta</h3>
-                    <p>Sora – Editor visual que usa ChatGPT para proponer diseño y texto.</p>
-                </div>
-                 <div class="info-block">
-                    <h3>Relación</h3>
-                    <p>Sora ↔ ChatGPT</p>
-                </div>
+        <!-- Exercise 1 Section - Styled as step-section -->
+        <section id="ejercicio1" class="step-section animate-on-scroll">
+            <div class="step-header">
+                <span class="step-number">1</span>
+                <h2>EJERCICIO 1 · Infografía directa en Sora</h2>
             </div>
+            <!-- Use step-content-column for vertical layout -->
+            <div class="step-content-column">
+                 <!-- Add a visual element like in Session 1 -->
+                 <div class="step-visual">
+                     <img src="images/step5-challenge.png" alt="Icono de infografía" class="step-image small-image">
+                 </div>
+                <!-- Info blocks styled similar to example-parts-container/info-block -->
+                <div class="exercise-info key-points-container">
+                    <div class="info-block key-point">
+                        <h4>Producto final</h4>
+                        <p>Infografía vertical (800 × 1200 px) con 4 bloques (icono + título + texto de 1 línea) sobre: 1) Máquina de vapor 2) Telar mecánico 3) Ferrocarril 4) Iluminación pública</p>
+                    </div>
+                    <div class="info-block key-point">
+                        <h4>Herramienta</h4>
+                        <p>Sora – Editor visual que usa ChatGPT para proponer diseño y texto.</p>
+                    </div>
+                     <div class="info-block key-point">
+                        <h4>Relación</h4>
+                        <p>Sora ↔ ChatGPT</p>
+                    </div>
+                </div>
 
-            <h3>Pasos que realiza el estudiante</h3>
-            <ol>
-                <li>Ingresar / registrarse
-                    <ul>
-                        <li>Accede a sora.app ⇒ Sign up con tu correo institucional.</li>
-                    </ul>
-                </li>
-                <li>Crear proyecto AI-assisted
-                    <ul>
-                        <li>New Project → Infographic (AI-assisted) | Lienzo 800×1200 px.</li>
-                    </ul>
-                </li>
-                <li>Describir el encargo
-                    <ul>
-                        <li>Copia esta instrucción en la casilla “Describe tu tema":
-                            <pre id="ej1_desc_tema">Revolución Industrial, 4 hitos: Máquina de vapor, Telar
+                <h3>Pasos que realiza el estudiante</h3>
+                <ol>
+                    <li>Ingresar / registrarse
+                        <ul>
+                            <li>Accede a sora.app ⇒ Sign up con tu correo institucional.</li>
+                        </ul>
+                    </li>
+                    <li>Crear proyecto AI-assisted
+                        <ul>
+                            <li>New Project → Infographic (AI-assisted) | Lienzo 800×1200 px.</li>
+                        </ul>
+                    </li>
+                    <li>Describir el encargo
+                        <ul>
+                            <li>Copia esta instrucción en la casilla “Describe tu tema":
+                                <!-- Use pre tag with styling from Session 1 code blocks -->
+                                <pre id="ej1_desc_tema">Revolución Industrial, 4 hitos: Máquina de vapor, Telar
 mecánico, Ferrocarril, Iluminación pública. Estilo pastel,
 moderno, títulos cortos y texto de 1 línea.</pre>
-                            <button class="copy-btn" data-target="ej1_desc_tema">Copiar texto</button>
-                        </li>
-                    </ul>
-                </li>
-                <li>Refinar con IA
-                    <ul>
-                        <li>Pulsa Refine with Al hasta que colores y iconos te convenzan.</li>
-                    </ul>
-                </li>
-                <li>Ajustes manuales
-                     <ul>
-                        <li>Arrastra bloques, cambia tamaño de fuente (> 16 pt) y margina.</li>
-                    </ul>
-                </li>
-                <li><span class="highlight">Compartir</span>
-                    <ul>
-                        <li>Share → Copy link | <span class="highlight">Pega esa URL en el campo “Mi infografía" del sandbox.</span></li>
-                    </ul>
-                </li>
-            </ol>
+                                <!-- Use btn and btn-secondary btn-small classes -->
+                                <button class="copy-btn btn btn-secondary btn-small" data-target="ej1_desc_tema">Copiar texto</button>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>Refinar con IA
+                        <ul>
+                            <li>Pulsa Refine with Al hasta que colores y iconos te convenzan.</li>
+                        </ul>
+                    </li>
+                    <li>Ajustes manuales
+                         <ul>
+                            <li>Arrastra bloques, cambia tamaño de fuente (> 16 pt) y margina.</li>
+                        </ul>
+                    </li>
+                    <li><span class="highlight">Compartir</span>
+                        <ul>
+                            <li>Share → Copy link | <span class="highlight">Pega esa URL en el campo “Mi infografía" del sandbox.</span></li>
+                        </ul>
+                    </li>
+                </ol>
 
-            <div class="sandbox">
-                <h3>Mi infografía (Pega el enlace aquí):</h3>
-                <input type="text" id="ej1_link_input" placeholder="Pega el enlace de tu infografía de Sora aquí...">
-                <button class="evaluate-btn" data-exercise="1">Evaluar Enlace</button>
-                <div class="ai-response" id="ej1_ai_response"></div>
-            </div>
-
-            <h3>Feedback automático que recibirá</h3>
-             <div class="exercise-info">
-                <div class="info-block">
-                    <h4>Criterio (IA del sandbox)</h4>
-                    <ol>
-                        <li>Estructura de 4 bloques (icono + título + ≤ 20 palabras)</li>
-                        <li>Claridad visual (tamaño ≥ 16 pt & buen contraste)</li>
-                        <li>Paleta pastel (≤3 colores principales)</li>
-                        <li>Cohesión temática (menciona los 4 hitos)</li>
-                    </ol>
+                <!-- Sandbox area styled as interactive-step -->
+                <div class="sandbox interactive-step animate-on-scroll">
+                    <h3>Mi infografía (Pega el enlace aquí):</h3>
+                    <!-- Input styled like form inputs in Session 1 -->
+                    <input type="text" id="ej1_link_input" placeholder="Pega el enlace de tu infografía de Sora aquí...">
+                    <!-- Button styled like btn-primary -->
+                    <div class="button-group">
+                        <button class="evaluate-btn btn btn-primary" data-exercise="1">Evaluar Enlace</button>
+                    </div>
+                    <!-- AI response area styled like feedback -->
+                    <div class="ai-response feedback animate-feedback" id="ej1_ai_response"></div>
                 </div>
-                <div class="info-block">
-                    <h4>Retroalimentación posible</h4>
-                    <ul>
-                        <li>"Bloque 3 excede 20 palabras. Recorta."</li>
-                        <li>"Texto muy pequeño en bloque 2. Aumenta font-size."</li>
-                        <li>"Se detectan 5 colores. Simplifica la paleta."</li>
-                        <li>"Falta 'Telar mecánico' en el título del bloque 2."</li>
-                    </ul>
-                </div>
-            </div>
-            <p>Cuando todos los criterios se cumplen, aparece <span class="check-icon">✅</span> Infografía aprobada".</p>
 
+                <h3>Feedback automático que recibirá</h3>
+                 <div class="exercise-info key-points-container">
+                    <div class="info-block key-point">
+                        <h4>Criterio (IA del sandbox)</h4>
+                        <ol>
+                            <li>Estructura de 4 bloques (icono + título + ≤ 20 palabras)</li>
+                            <li>Claridad visual (tamaño ≥ 16 pt & buen contraste)</li>
+                            <li>Paleta pastel (≤3 colores principales)</li>
+                            <li>Cohesión temática (menciona los 4 hitos)</li>
+                        </ol>
+                    </div>
+                    <div class="info-block key-point">
+                        <h4>Retroalimentación posible</h4>
+                        <ul>
+                            <li>"Bloque 3 excede 20 palabras. Recorta."</li>
+                            <li>"Texto muy pequeño en bloque 2. Aumenta font-size."</li>
+                            <li>"Se detectan 5 colores. Simplifica la paleta."</li>
+                            <li>"Falta 'Telar mecánico' en el título del bloque 2."</li>
+                        </ul>
+                    </div>
+                </div>
+                <p>Cuando todos los criterios se cumplen, aparece <span class="check-icon">✅</span> Infografía aprobada".</p>
+
+            </div>
         </section>
 
-        <hr>
-
-        <section id="ejercicio2">
-            <h2>EJERCICIO 2 · Guion de video + Podcast en Notebook LM</h2>
-
-             <div class="exercise-info">
-                <div class="info-block">
-                    <h3>Producto final</h3>
-                    <p>a) Guion/storyboard en 5 escenas (video de 60 s) b) Audio-podcast de la misma pieza (lectura sintética).</p>
-                </div>
-                <div class="info-block">
-                    <h3>Tema</h3>
-                    <p>Cuidado del agua (dirigido a alumnos de secundaria).</p>
-                </div>
-                <div class="info-block">
-                    <h3>¿Qué es un podcast?</h3>
-                    <p>Programa de audio que los oyentes reproducen cuando quieran (tipo "radio a demanda").</p>
-                </div>
-                 <div class="info-block">
-                    <h3>¿Qué es Notebook LM?</h3>
-                    <p>Libreta online con LLM integrado: escribes texto, el modelo sugiere mejoras y, con “Texto → Voz”, genera audio. Registro: any cuenta Google.</p>
-                </div>
+        <!-- Exercise 2 Section - Styled as step-section -->
+        <!-- Removed hr here, section margin will handle spacing -->
+        <section id="ejercicio2" class="step-section animate-on-scroll">
+             <div class="step-header">
+                <span class="step-number">2</span>
+                <h2>EJERCICIO 2 · Guion de video + Podcast en Notebook LM</h2>
             </div>
+             <div class="step-content-column">
+                  <!-- Add a visual element -->
+                   <div class="step-visual">
+                        <img src="images/step4-prompt-practice.png" alt="Icono de video/podcast" class="step-image small-image">
+                   </div>
+                <div class="exercise-info key-points-container">
+                    <div class="info-block key-point">
+                        <h4>Producto final</h4>
+                        <p>a) Guion/storyboard en 5 escenas (video de 60 s) b) Audio-podcast de la misma pieza (lectura sintética).</p>
+                    </div>
+                    <div class="info-block key-point">
+                        <h4>Tema</h4>
+                        <p>Cuidado del agua (dirigido a alumnos de secundaria).</p>
+                    </div>
+                    <div class="info-block key-point">
+                        <h4>¿Qué es un podcast?</h4>
+                        <p>Programa de audio que los oyentes reproducen cuando quieran (tipo "radio a demanda").</p>
+                    </div>
+                     <div class="info-block key-point">
+                        <h4>¿Qué es Notebook LM?</h4>
+                        <p>Libreta online con LLM integrado: escribes texto, el modelo sugiere mejoras y, con “Texto → Voz”, genera audio. Registro: any cuenta Google.</p>
+                    </div>
+                </div>
 
-            <h3>Pasos que realiza el estudiante</h3>
-            <ol>
-                <li>Generar el guion con ChatGPT
-                    <ul>
-                        <li>Prompt sugerido (puedes mejorarlo):
-                            <pre id="ej2_prompt_chatgpt">“Eres creador educativo. Guion para video de 60 s sobre
+                <h3>Pasos que realiza el estudiante</h3>
+                <ol>
+                    <li>Generar el guion con ChatGPT
+                        <ul>
+                            <li>Prompt sugerido (puedes mejorarlo):
+                                <pre id="ej2_prompt_chatgpt">“Eres creador educativo. Guion para video de 60 s sobre
 'Cuidado del agua' (secundaria). 5 escenas: describe acción,
 diálogo/texto, imagen/animación sugerida y duración (≈ 12 s).
 Tono motivador."</pre>
-                             <button class="copy-btn" data-target="ej2_prompt_chatgpt">Copiar prompt</button>
-                        </li>
-                    </ul>
-                </li>
-                <li>Copiar a Notebook LM
-                     <ul>
-                        <li>notebooklm.google.com ⇒ New notebook ⇒ Pega guion en una celda.</li>
-                    </ul>
-                </li>
-                <li>Convertir a podcast
-                    <ul>
-                        <li>Selecciona la celda ⇒ <span style="font-weight: bold; font-size: 1.2em;">:</span> → Text-to-speech ⇒ Ajusta voz y velocidad.</li>
-                    </ul>
-                </li>
-                <li>Iterar
-                    <ul>
-                        <li>Si el audio dura > 60 s o suena muy formal, edita el texto y vuelve a generar.</li>
-                    </ul>
-                </li>
-                <li><span class="highlight">Entregar</span>
-                     <ul>
-                        <li>Pulsa Share → Copy link de Notebook LM y <span class="highlight">pega en el sandbox.</span></li>
-                    </ul>
-                </li>
-            </ol>
+                                 <button class="copy-btn btn btn-secondary btn-small" data-target="ej2_prompt_chatgpt">Copiar prompt</button>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>Copiar a Notebook LM
+                         <ul>
+                            <li>notebooklm.google.com ⇒ New notebook ⇒ Pega guion en una celda.</li>
+                        </ul>
+                    </li>
+                    <li>Convertir a podcast
+                        <ul>
+                            <li>Selecciona la celda ⇒ <span style="font-weight: bold; font-size: 1.2em;">:</span> → Text-to-speech ⇒ Ajusta voz y velocidad.</li>
+                        </ul>
+                    </li>
+                    <li>Iterar
+                        <ul>
+                            <li>Si el audio dura > 60 s o suena muy formal, edita el texto y vuelve a generar.</li>
+                        </ul>
+                    </li>
+                    <li><span class="highlight">Entregar</span>
+                         <ul>
+                            <li>Pulsa Share → Copy link de Notebook LM y <span class="highlight">pega en el sandbox.</span></li>
+                        </ul>
+                    </li>
+                </ol>
 
-            <div class="sandbox">
-                <h3>Mi guion/podcast (Pega el enlace aquí):</h3>
-                 <input type="text" id="ej2_link_input" placeholder="Pega el enlace de tu notebook de Notebook LM aquí...">
-                <button class="evaluate-btn" data-exercise="2">Evaluar Enlace</button>
-                <div class="ai-response" id="ej2_ai_response"></div>
-            </div>
-
-             <h3>Feedback automático que recibirá</h3>
-             <div class="exercise-info">
-                <div class="info-block">
-                    <h4>Criterio (IA del sandbox)</h4>
-                    <ol>
-                        <li>Guion = 5 escenas, total ≈ 60 s</li>
-                        <li>Formato de cada escena (acción + diálogo + visual)</li>
-                        <li>Tono motivador, audiencia secundaria</li>
-                        <li>Podcast audible (voz clara, ritmo adecuado)</li>
-                    </ol>
+                <div class="sandbox interactive-step animate-on-scroll">
+                    <h3>Mi guion/podcast (Pega el enlace aquí):</h3>
+                     <input type="text" id="ej2_link_input" placeholder="Pega el enlace de tu notebook de Notebook LM aquí...">
+                     <div class="button-group">
+                        <button class="evaluate-btn btn btn-primary" data-exercise="2">Evaluar Enlace</button>
+                     </div>
+                    <div class="ai-response feedback animate-feedback" id="ej2_ai_response"></div>
                 </div>
-                <div class="info-block">
-                    <h4>Retroalimentación posible</h4>
-                    <ul>
-                        <li>"Audio dura 78 s. Recorta diálogos."</li>
-                        <li>"Escena 4 sin sugerencia visual. Agrégala."</li>
-                        <li>“Diálogo usa vocabulario demasiado técnico (‘captación pluvial'). Simplifica.”</li>
-                        <li>"Voz muy rápida. Reduce velocidad en Text-to-speech."</li>
-                    </ul>
-                </div>
-            </div>
-            <p>Aprobado cuando las 4 condiciones se satisfacen.</p>
 
+                 <h3>Feedback automático que recibirá</h3>
+                 <div class="exercise-info key-points-container">
+                    <div class="info-block key-point">
+                        <h4>Criterio (IA del sandbox)</h4>
+                        <ol>
+                            <li>Guion = 5 escenas, total ≈ 60 s</li>
+                            <li>Formato de cada escena (acción + diálogo + visual)</li>
+                            <li>Tono motivador, audiencia secundaria</li>
+                            <li>Podcast audible (voz clara, ritmo adecuado)</li>
+                        </ol>
+                    </div>
+                    <div class="info-block key-point">
+                        <h4>Retroalimentación posible</h4>
+                        <ul>
+                            <li>"Audio dura 78 s. Recorta diálogos."</li>
+                            <li>"Escena 4 sin sugerencia visual. Agrégala."</li>
+                            <li>“Diálogo usa vocabulario demasiado técnico (‘captación pluvial'). Simplifica.”</li>
+                            <li>"Voz muy rápida. Reduce velocidad en Text-to-speech."</li>
+                        </ul>
+                    </div>
+                </div>
+                <p>Aprobado cuando las 4 condiciones se satisfacen.</p>
+
+            </div>
         </section>
 
-        <hr>
-
-        <section id="ejercicio3">
-            <h2>EJERCICIO 3 · Ayuda multimodal con Google AI Studio + Word</h2>
-
-             <div class="exercise-info">
-                <div class="info-block">
-                    <h3>Producto final</h3>
-                    <p>Serie de capturas “antes / después” que muestran cómo seguiste las instrucciones de IA para ajustar un documento en Word.</p>
-                </div>
-                <div class="info-block">
-                    <h3>¿Qué es IA multimodal?</h3>
-                    <p>Modelo que entiende texto y la imagen que subes; responde combinando ambos.</p>
-                </div>
-                <div class="info-block">
-                    <h3>Plataforma</h3>
-                    <p>Google AI Studio – Chat web gratuito con modo “Imagen + Texto”. Registro: cuenta Google ⇒ Get started.</p>
-                </div>
+        <!-- Exercise 3 Section - Styled as step-section -->
+        <!-- Removed hr here -->
+        <section id="ejercicio3" class="step-section animate-on-scroll">
+             <div class="step-header">
+                <span class="step-number">3</span>
+                <h2>EJERCICIO 3 · Ayuda multimodal con Google AI Studio + Word</h2>
             </div>
+             <div class="step-content-column">
+                  <!-- Add a visual element -->
+                   <div class="step-visual">
+                        <img src="images/step1-prompt-concept.png" alt="Icono multimodal" class="step-image small-image">
+                   </div>
+                <div class="exercise-info key-points-container">
+                    <div class="info-block key-point">
+                        <h4>Producto final</h4>
+                        <p>Serie de capturas “antes / después” que muestran cómo seguiste las instrucciones de IA para ajustar un documento en Word.</p>
+                    </div>
+                    <div class="info-block key-point">
+                        <h4>¿Qué es IA multimodal?</h4>
+                        <p>Modelo que entiende texto y la imagen que subes; responde combinando ambos.</p>
+                    </div>
+                    <div class="info-block key-point">
+                        <h4>Plataforma</h4>
+                        <p>Google AI Studio – Chat web gratuito con modo “Imagen + Texto”. Registro: cuenta Google ⇒ Get started.</p>
+                    </div>
+                </div>
 
-            <h3>Pasos que realiza el estudiante</h3>
-            <ol>
-                <li>Crear el problema en Word
-                     <ul>
-                        <li>Escribe un párrafo largo que se descuadra o desborda página.</li>
-                    </ul>
-                </li>
-                <li><span class="highlight">Capturar pantalla (antes)</span>
-                     <ul>
-                        <li>Incluye cinta de opciones mostrando menú “Diseño” o “Párrafo".</li>
-                    </ul>
-                </li>
-                <li>Subir a Google AI Studio
-                    <ul>
-                        <li>Nuevo chat ⇒ “Imagen + Texto" ⇒ Sube captura.</li>
-                    </ul>
-                </li>
-                <li><span class="highlight">Escribir el prompt</span>
-                    <pre id="ej3_prompt_ai_studio">“Soy profesor usando Word 365 en español. En la imagen mi
+                <h3>Pasos que realiza el estudiante</h3>
+                <ol>
+                    <li>Crear el problema en Word
+                         <ul>
+                            <li>Escribe un párrafo largo que se descuadra o desborda página.</li>
+                        </ul>
+                    </li>
+                    <li><span class="highlight">Capturar pantalla (antes)</span>
+                         <ul>
+                            <li>Incluye cinta de opciones mostrando menú “Diseño” o “Párrafo".</li>
+                        </ul>
+                    </li>
+                    <li>Subir a Google AI Studio
+                        <ul>
+                            <li>Nuevo chat ⇒ “Imagen + Texto" ⇒ Sube captura.</li>
+                        </ul>
+                    </li>
+                    <li><span class="highlight">Escribir el prompt</span>
+                        <pre id="ej3_prompt_ai_studio">“Soy profesor usando Word 365 en español. En la imagen mi
 párrafo se desborda. ¿Qué ajustes de márgenes y espaciado aplico
 para que el texto quepa y se vea uniforme? Da pasos concretos.”</pre>
-                    <button class="copy-btn" data-target="ej3_prompt_ai_studio">Copiar prompt</button>
-                </li>
-                <li>Aplicar pasos sugeridos en Word.</li>
-                <li><span class="highlight">Capturar pantalla (después)</span> mostrando corrección.</li>
-                <li><span class="highlight">Entregar</span>
-                     <ul>
-                        <li><span class="highlight">Sube ambas capturas al sandbox y, en el campo “Mi prompt", pega el texto exacto que usaste en AI Studio.</span></li>
-                    </ul>
-                </li>
-            </ol>
+                        <button class="copy-btn btn btn-secondary btn-small" data-target="ej3_prompt_ai_studio">Copiar prompt</button>
+                    </li>
+                    <li>Aplicar pasos sugeridos en Word.</li>
+                    <li><span class="highlight">Capturar pantalla (después)</span> mostrando corrección.</li>
+                    <li><span class="highlight">Entregar</span>
+                         <ul>
+                            <li><span class="highlight">Sube ambas capturas al sandbox y, en el campo “Mi prompt", pega el texto exacto que usaste en AI Studio.</span></li>
+                        </ul>
+                    </li>
+                </ol>
 
-            <div class="sandbox">
-                <h3>Sube tus capturas y prompt:</h3>
-                <div class="file-upload-area">
-                    <label for="ej3_file_before">Captura "Antes":</label>
-                    <input type="file" id="ej3_file_before" accept="image/*">
-                    <span id="ej3_file_before_name" class="file-name"></span>
+                <div class="sandbox interactive-step animate-on-scroll">
+                    <h3>Sube tus capturas y prompt:</h3>
+                    <div class="file-upload-area">
+                        <label for="ej3_file_before">Captura "Antes":</label>
+                        <input type="file" id="ej3_file_before" accept="image/*">
+                        <span id="ej3_file_before_name" class="file-name"></span>
+                    </div>
+                     <div class="file-upload-area">
+                        <label for="ej3_file_after">Captura "Después":</label>
+                        <input type="file" id="ej3_file_after" accept="image/*">
+                         <span id="ej3_file_after_name" class="file-name"></span>
+                    </div>
+
+                    <h4>Mi prompt usado en AI Studio:</h4>
+                    <textarea id="ej3_prompt_input" placeholder="Pega aquí el prompt que usaste en Google AI Studio..."></textarea>
+
+                    <div class="button-group">
+                         <button class="evaluate-btn btn btn-primary" data-exercise="3">Evaluar Entrega Multimodal</button>
+                    </div>
+                    <div class="ai-response feedback animate-feedback" id="ej3_ai_response"></div>
                 </div>
-                 <div class="file-upload-area">
-                    <label for="ej3_file_after">Captura "Después":</label>
-                    <input type="file" id="ej3_file_after" accept="image/*">
-                     <span id="ej3_file_after_name" class="file-name"></span>
+
+                 <h3>Feedback automático que recibirá</h3>
+                 <div class="exercise-info key-points-container">
+                    <div class="info-block key-point">
+                        <h4>Criterio (IA del sandbox)</h4>
+                        <ol>
+                            <li>Prompt incluye contexto (Word 365, español) + solicitud clara</li>
+                            <li>Captura "antes” evidencia el problema</li>
+                            <li>Captura "después" refleja mejora visible</li>
+                            <li>Pasos seguidos coinciden con respuesta del modelo</li>
+                        </ol>
+                    </div>
+                    <div class="info-block key-point">
+                        <h4>Retroalimentación posible</h4>
+                        <ul>
+                            <li>"No indicaste versión de Word. Añádela al prompt."</li>
+                            <li>“La imagen no muestra menú de párrafo; repite captura."</li>
+                             <li>“Aún se ve texto cortado. Revisa paso 3 del instructivo."</li>
+                             <li>“No aplicaste el ajuste de márgenes sugerido."</li>
+                        </ul>
+                    </div>
                 </div>
+                 <p>Una vez cumplidos, el sandbox muestra “<span class="check-icon">✅</span> Corrección aplicada correctamente”.</p>
 
-                <h4>Mi prompt usado en AI Studio:</h4>
-                <textarea id="ej3_prompt_input" placeholder="Pega aquí el prompt que usaste en Google AI Studio..."></textarea>
-
-                <button class="evaluate-btn" data-exercise="3">Evaluar Entrega Multimodal</button>
-                <div class="ai-response" id="ej3_ai_response"></div>
             </div>
-
-             <h3>Feedback automático que recibirá</h3>
-             <div class="exercise-info">
-                <div class="info-block">
-                    <h4>Criterio (IA del sandbox)</h4>
-                    <ol>
-                        <li>Prompt incluye contexto (Word 365, español) + solicitud clara</li>
-                        <li>Captura "antes” evidencia el problema</li>
-                        <li>Captura "después" refleja mejora visible</li>
-                        <li>Pasos seguidos coinciden con respuesta del modelo</li>
-                    </ol>
-                </div>
-                <div class="info-block">
-                    <h4>Retroalimentación posible</h4>
-                    <ul>
-                        <li>"No indicaste versión de Word. Añádela al prompt."</li>
-                        <li>“La imagen no muestra menú de párrafo; repite captura."</li>
-                         <li>“Aún se ve texto cortado. Revisa paso 3 del instructivo."</li>
-                         <li>“No aplicaste el ajuste de márgenes sugerido."</li>
-                    </ul>
-                </div>
-            </div>
-             <p>Una vez cumplidos, el sandbox muestra “<span class="check-icon">✅</span> Corrección aplicada correctamente”.</p>
-
         </section>
 
-        <hr>
-
-         <section id="entrega-global">
-            <h2>Entrega y calificación global</h2>
-            <ul>
-                <li><span class="highlight">Sube en el sandbox:</span> enlace de Sora, enlace de Notebook LM y capturas + prompt de Google AI Studio.</li>
-                <li>La IA revisará cada rúbrica y mostrará un semáforo:
-                    <ul>
-                        <li><span class="status-indicator status-green"></span> Aprobado (pasa todos los criterios)</li>
-                        <li><span class="status-indicator status-yellow"></span> Ajustes menores (indica qué corregir)</li>
-                        <li><span class="status-indicator status-red"></span> Rehacer (faltan elementos clave)</li>
-                    </ul>
-                </li>
-                <li>Corrige lo indicado y vuelve a enviar hasta obtener <span class="status-indicator status-green"></span> en los tres ejercicios.</li>
-            </ul>
-            <p>¡Listo! Con estos lineamientos el profesor sabe exactamente <span class="highlight">qué hacer</span>, <span class="highlight">dónde hacerlo</span> y <span class="highlight">qué feedback automático recibirá</span> en el sandbox.</p>
+        <!-- Entrega Global Section - Styled as step-section -->
+        <!-- Removed hr here -->
+         <section id="entrega-global" class="step-section animate-on-scroll">
+            <div class="step-header">
+                 <!-- Using ! number for a final emphasis/summary step -->
+                <span class="step-number">!</span>
+                <h2>Entrega y calificación global</h2>
+            </div>
+             <div class="step-content-column">
+                 <!-- Add a visual element -->
+                  <div class="step-visual">
+                       <img src="images/step3-key-takeaways.png" alt="Icono de entrega" class="step-image small-image">
+                  </div>
+                <ul>
+                    <li><span class="highlight">Sube en el sandbox:</span> enlace de Sora, enlace de Notebook LM y capturas + prompt de Google AI Studio.</li>
+                    <li>La IA revisará cada rúbrica y mostrará un semáforo:
+                        <ul>
+                            <!-- Status indicators styled as small circles -->
+                            <li><span class="status-indicator status-green"></span> Aprobado (pasa todos los criterios)</li>
+                            <li><span class="status-indicator status-yellow"></span> Ajustes menores (indica qué corregir)</li>
+                            <li><span class="status-indicator status-red"></span> Rehacer (faltan elementos clave)</li>
+                        </ul>
+                    </li>
+                    <li>Corrige lo indicado y vuelve a enviar hasta obtener <span class="status-indicator status-green"></span> en los tres ejercicios.</li>
+                </ul>
+                <!-- Motivational text styled -->
+                <p class="motivational">¡Listo! Con estos lineamientos el profesor sabe exactamente <span class="highlight">qué hacer</span>, <span class="highlight">dónde hacerlo</span> y <span class="highlight">qué feedback automático recibirá</span> en el sandbox.</p>
+            </div>
         </section>
+
+        <!-- Add a simple footer like in Session 1 -->
+        <footer class="main-footer">
+            <p>Sandbox Inteligente - ¡Sigue practicando!</p>
+        </footer>
 
     </main>
 
+    <!-- Link to the JS - Keep defer -->
     <script src="script.js" defer></script>
 </body>
 </html>

@@ -15,6 +15,7 @@
 
   --text-color: #374151; /* Gris oscuro para texto general */
   --text-light: #6b7280; /* Gris medio */
+    --text-dark: #212121; /* Very dark grey for strong text */
 
   --bg-color: #00AEF0; /* Azul claro para el fondo principal de la página */
   --bg-alt: #ffffff; /* Blanco para cards/secciones */
@@ -32,10 +33,16 @@
   --loading-color: #6b7280;
   --loading-bg: #f3f4f6;
 
-  /* Specific colors from Session 1 master prompt box, adapted for consistency */
-  --prompt-input-bg: #fff4c9; /* Light yellow from Session 1 examples */
-  --prompt-input-border: var(--primary-color); /* Red border from Session 1 inputs */
-  --prompt-input-text: var(--text-color); /* Standard text color */
+  /* Specific colors for the prompt text box and input based on Session 1 examples */
+  --prompt-box-bg: #fff9e6; /* Amarillo muy pálido for example prompt boxes */
+  --prompt-box-border: #ffeccf;
+  --prompt-box-text: #b45309;
+
+  --input-bg: #fff; /* White background for inputs */
+  --input-border: var(--border-color); /* Light grey border */
+  --input-border-focus: var(--primary-color); /* Primary color on focus */
+  --input-shadow-focus: rgba(245, 69, 38, 0.3); /* Primary color glow */
+
 
   --font-family: 'Inter', sans-serif;
   --border-radius: 8px;
@@ -63,60 +70,50 @@ body {
   padding: 0; /* Padding handled by container/sections */
 }
 
-/* We'll make the <main> tag act like the .container */
+/* main tag acts like the .container from Session 1 */
 main {
-  max-width: 900px; /* Use master's container width */
-  margin: 2rem auto; /* Center with spacing */
-  padding: 0 1rem; /* Horizontal padding */
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
 }
 
 
 h1, h2, h3, h4, h5, h6 {
-  color: var(--text-color);
+  color: var(--text-dark); /* Darker text for headings */
   margin-bottom: 0.75rem;
   line-height: 1.3;
 }
 
 h1 { font-size: 2.25rem; font-weight: 700; }
 h2 { font-size: 1.75rem; font-weight: 700; }
-h3 { font-size: 1.25rem; font-weight: 500; }
+h3 { font-size: 1.25rem; font-weight: 500; color: var(--text-color); } /* h3 can be slightly lighter */
 h4 { font-size: 1.1rem; font-weight: 500; margin-bottom: 0.5rem; }
 
-/* Adjust specific headers */
-section h2 { /* All exercise titles */
-  color: var(--primary-color); /* Red/Orange from master */
-  margin-bottom: 0; /* Will use padding below the number/title line */
-  padding-left: 45px; /* Space for the number circle */
-  position: relative; /* Needed for positioning the number */
-  border-bottom: 1px solid var(--border-color); /* Add separator line */
-  padding-bottom: 0.5rem; /* Space between title and the line */
-  margin-bottom: 1.5rem; /* Space below the line */
+/* Adapt specific headers to Session 1 style */
+/* Section headers (h2 within step-header) are primary color */
+.step-header h2 {
+  color: var(--primary-color);
+  margin-bottom: 0; /* Margin handled by the flex container / border below */
 }
-section h3 {
-     margin-top: 1.5rem; /* Add space above h3 inside sections */
-}
-section h4 {
-    margin-top: 1rem; /* Add space above h4 inside sections */
-    color: var(--text-color); /* Make h4 dark text */
-}
-
 
 p { margin-bottom: 1rem; color: var(--text-light); }
 a { color: var(--primary-color); text-decoration: none; }
 a:hover { text-decoration: underline; }
-strong, .highlight { /* Use bolding for highlights */
+
+/* Consistent strong/highlight style */
+strong, .highlight {
     font-weight: 700;
-    color: var(--text-color); /* Standard text color for bold */
+    color: var(--text-dark); /* Very dark grey for emphasis */
 }
 em { font-style: italic; }
 ul, ol { margin-left: 1.5rem; margin-bottom: 1rem; }
-li { margin-bottom: 0.5rem; } /* Adjust list item spacing */
+li { margin-bottom: 0.5rem; }
 
-/* Style for preformatted text (like example prompts/texts) */
+/* Style for preformatted text blocks (like example prompts/texts) */
 pre {
     background-color: #f3f4f6; /* Light grey background */
     padding: 0.75rem 1rem;
-    border-left: 4px solid var(--primary-color); /* Primary color bar */
+    border-left: 4px solid var(--secondary-color); /* Secondary color bar */
     border-radius: var(--border-radius);
     overflow-x: auto;
     white-space: pre-wrap;
@@ -128,292 +125,432 @@ pre {
     color: var(--text-color);
 }
 
+/* Prompt Text Box (Copied from Session 1 Master for consistency with examples) */
+.prompt-text-box {
+  background-color: var(--prompt-box-bg); /* Amarillo muy pálido */
+  border: 1px solid var(--prompt-box-border); /* Borde amarillo sutil */
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  font-family: monospace;
+  font-size: 1em; /* Adjusted slightly smaller for list context */
+  line-height: 1.5;
+  color: var(--prompt-box-text); /* Texto oscuro para contraste */
+  margin-bottom: 0.5rem; /* Add space below the box */
+  word-break: break-word; /* Ensure long text breaks */
+}
+
 
 /* --- Header (Adapted from Session 1 Master) --- */
-header {
+.main-header {
   text-align: center;
   margin-bottom: 3rem;
   padding: 3rem 1rem 1.5rem 1rem; /* Adjust padding */
-  color: var(--white); /* White text for header */
+  color: var(--bg-alt); /* White text for header */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5); /* White border */
 }
-header h1 {
-    color: var(--white); /* White title in header */
-    margin-bottom: 0.5rem;
-}
-header p {
+.main-header h1 { color: var(--bg-alt); margin-bottom: 0.5rem;} /* White title in header */
+.main-header p {
     color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
     font-size: 1.1rem;
     margin-bottom: 0;
 }
 
+/* Global HR style (for separators not replaced by section styles) */
 hr {
     border: none;
     height: 1px;
-    background-color: rgba(255, 255, 255, 0.5);
-    margin: 3rem auto;
+    background-color: var(--border-color); /* Use standard border color */
+    margin: 3rem auto; /* Space and center */
     width: 80%;
 }
 
-/* --- Step Section Styles (Adapted from Session 1 Master) --- */
-section { /* All sections become cards */
+
+/* --- Step Section Layout (Adapted from Session 1 Master) --- */
+.step-section {
   background-color: var(--bg-alt); /* White background */
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   margin-bottom: 2.5rem;
   padding: 2rem;
   border: 1px solid var(--border-color);
-  position: relative; /* For the number circle */
+  /* Initial state for animation (requires script.js) */
+ /* opacity: 0; */
+  /* transform: translateY(20px);*/ 
+  transition: opacity var(--transition-speed) ease-out, transform var(--transition-speed) ease-out;
+}
+/* Class added by JS on scroll */
+.step-section.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Ensure the animation classes also define the initial state */
+.animate-on-scroll {
+/*    opacity: 0; */
+/*    transform: translateY(20px); */
+}
+/* Remove initial state when JS adds is-visible */
+.animate-on-scroll.is-visible {
+     opacity: 1;
+     transform: translateY(0);
 }
 
-/* The red circle with the number (Adapted from Session 1 Master's .step-number) */
-.exercise-number-circle { /* Add this class to a span inside each h2 */
-    position: absolute;
-    left: 0;
-    top: 0; /* Align to the top of the H2 container */
-    transform: translateY(-50%); /* Move up by half its height */
-    display: inline-flex; /* Use flexbox to center the number */
-    align-items: center;
-    justify-content: center;
-    width: 36px; /* Size of the circle */
-    height: 36px;
-    background-color: var(--primary-color); /* Red/Orange */
-    color: white;
-    font-weight: 700;
-    border-radius: 50%;
-    margin-right: 1rem; /* Space to the text */
-    font-size: 1.1rem;
+
+/* Header *within* a step section (Number + Title) */
+.step-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
 }
-/* Adjust h2 padding to make space for the circle */
-section h2 { padding-left: 45px; }
+/* The number circle (Copied from Session 1 Master's .step-number) */
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background-color: var(--primary-color); /* Red/Orange */
+  color: white;
+  font-weight: 700;
+  border-radius: 50%;
+  margin-right: 1rem; /* Space to the title */
+  font-size: 1.1rem;
+  flex-shrink: 0; /* Prevent shrinking */
+}
+/* H2 within step-header */
+.step-header h2 {
+    color: var(--primary-color); /* Red/Orange */
+    margin-bottom: 0; /* Remove default margin below H2 */
+    flex-grow: 1; /* Allow title to take space */
+}
 
-
-/* --- Info Blocks (Adapted from Session 2 structure, styled with Session 1 palette) --- */
-.exercise-info {
+/* Keep flex column layout as standard for content in this session */
+.step-content-column {
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-bottom: 20px;
-    padding: 0; /* Remove padding */
+    flex-direction: column;
 }
 
-.info-block {
-    flex: 1;
-    min-width: 250px;
-    padding: 15px;
-    border: 1px dashed var(--border-color); /* Dashed border */
+/* Visual image within a step section */
+.step-visual { /* Copied from Session 1 Master */
+  text-align: center;
+  margin-bottom: 1rem; /* Add space below visual */
+}
+.step-image { /* Copied from Session 1 Master */
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--border-radius);
+}
+.step-image.small-image { /* Copied from Session 1 Master */
+    max-width: 150px; /* Slightly smaller small images */
+    margin-bottom: 1.5rem; /* Add space below small image */
+}
+/* Move visual to the top on small screens, from Session 1 Master */
+@media (max-width: 768px) {
+    .step-visual { order: -1; margin-bottom: 1.5rem; } /* Move to top and add space */
+    .step-image.small-image { margin-bottom: 1rem; } /* Adjust margin */
+}
+
+
+/* --- Info Blocks (Adapted from exercise-info/info-block, styled with Session 1 palette) --- */
+/* Using key-points-container and key-point for consistency with Session 1 structure ideas */
+.exercise-info.key-points-container { /* Combining old and new class names */
+    background-color: var(--secondary-color); /* Yellow */
     border-radius: var(--border-radius);
-    background-color: #f9fafb; /* Very light grey */
-    /* box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05); Removed inner shadow for simpler look */
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+    align-items: start;
+}
+.info-block.key-point { /* Combining old and new class names */
+    background-color: var(--bg-alt); /* White background for individual blocks */
+    padding: 1rem;
+    border: 1px solid var(--border-color); /* Light grey border */
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow */
 }
 
-.info-block h4 {
-    margin-top: 0;
-    color: var(--text-color); /* Dark text */
-    font-weight: 700; /* Bold h4 in info blocks */
+.info-block.key-point h4 {
+     color: var(--secondary-dark); /* Darker yellow for heading */
+     margin-top: 0;
+     margin-bottom: 0.5rem;
 }
+.info-block.key-point p,
+.info-block.key-point ul,
+.info-block.key-point ol {
+     color: var(--text-light); /* Lighter text for content in info blocks */
+     margin-bottom: 0.5rem; /* Adjust spacing */
+}
+.info-block.key-point ul,
+.info-block.key-point ol {
+     margin-bottom: 0; /* No margin below lists */
+     padding-left: 1.25rem; /* Adjust list padding */
+}
+.info-block.key-point li { margin-bottom: 0.25rem; } /* Tighter list spacing */
+.info-block.key-point p:last-child { margin-bottom: 0; }
 
-.info-block ul, .info-block ol {
-    margin-bottom: 0;
-    padding-left: 20px;
-}
-.info-block li {
-     margin-bottom: 5px;
-     color: var(--text-light); /* Lighter text for list items in info blocks */
-}
-.info-block p {
-    color: var(--text-light); /* Lighter text for paragraphs in info blocks */
-}
 
-
-/* --- Sandbox Area (Similar to Prompt/Example areas in Master) --- */
+/* --- Sandbox Area (Styled as interactive-step from Session 1) --- */
 .sandbox {
-    border: 1px solid var(--border-color); /* Simple border */
-    padding: 20px;
-    margin-top: 25px;
-    margin-bottom: 25px;
-    background-color: #f9fafb; /* Light grey background */
+    /* Inherits padding, background, border from interactive-step */
+    margin-top: 1.5rem; /* Consistent space above sandbox */
+    margin-bottom: 1.5rem; /* Consistent space below sandbox */
+    padding: 1.5rem; /* Padding for the sandbox content */
+}
+/* Styles from interactive-step in Session 1 Master */
+.interactive-step {
+    background-color: #eff6ff; /* Light blue */
+    border-color: #bfdbfe;
     border-radius: var(--border-radius);
-    /* box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); Removed sandbox shadow */
+    border-width: 1px;
+    border-style: solid;
+    box-shadow: none; /* Remove section's shadow */
 }
-.sandbox h3 {
-    margin-top: 0;
-    color: var(--text-color);
-    font-weight: 700; /* Bold h3 in sandbox */
-}
-.sandbox h4 {
-    margin-top: 15px;
-    margin-bottom: 8px;
-    color: var(--text-color);
-    font-weight: 700; /* Bold h4 in sandbox */
-}
+
+.sandbox h3 { color: var(--text-dark); margin-bottom: 0.5rem; } /* Sandbox heading darker */
+.sandbox h4 { color: var(--text-dark); margin-top: 1rem; margin-bottom: 0.5rem;} /* Sandbox sub-heading darker */
+.sandbox p { color: var(--text-light); font-size: 0.95rem; margin-bottom: 1rem; }
 
 
 /* --- Inputs (Textarea and Text Input - Styled like Master Form Inputs) --- */
-textarea, input[type="text"] {
-    width: calc(100% - 2px); /* Full width minus border */
-    min-height: 120px; /* Keep from Session 2 */
-    padding: 0.75rem 1rem; /* Padding from master input */
-    margin-bottom: 15px;
-    border: 1px solid var(--primary-color); /* Primary color border */
-    border-radius: var(--border-radius); /* Rounded corners from master */
-    font-family: var(--font-family); /* Use master font */
-    font-size: 1rem; /* Master font size */
-    resize: vertical;
-    box-sizing: border-box; /* Include padding/border in size */
+.sandbox textarea,
+.sandbox input[type="text"] {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--input-border); /* Light grey border for inputs */
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-family: var(--font-family);
+    width: 100%; /* Full width */
+    margin-bottom: 1rem; /* Space below inputs */
     transition: border-color var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    background-color: var(--input-bg); /* White background */
 }
-
-input[type="text"] {
-    min-height: unset;
-    height: 40px; /* Standard height */
-    line-height: 40px; /* Vertical align text */
-    padding: 0 1rem; /* Adjust padding */
+.sandbox textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+.sandbox input[type="text"] {
+    height: 42px; /* Adjusted height */
+    line-height: 42px;
+    padding: 0 1rem;
+    margin-bottom: 0; /* Space handled by file-upload-area/label */
 }
 
 /* Focus state for inputs */
-textarea:focus, input[type="text"]:focus {
+.sandbox textarea:focus,
+.sandbox input[type="text"]:focus {
     outline: none;
-    border-color: var(--border-focus);
-    box-shadow: 0 0 0 3px rgba(245, 69, 38, 0.3); /* Primary color glow */
+    border-color: var(--input-border-focus); /* Primary color */
+    box-shadow: 0 0 0 3px var(--input-shadow-focus); /* Primary color glow */
 }
 
 
 /* --- Buttons (Adapted from Session 1 Master) --- */
-button {
-  padding: 0.75rem 1.5rem; /* Padding from master btn */
+.btn { /* Base button styles from Session 1 */
+  padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: var(--border-radius); /* Rounded corners from master */
-  font-size: 1rem; /* Master font size */
-  font-weight: 500; /* Master font weight */
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
   text-align: center;
   transition: background-color var(--transition-speed) ease, transform 0.1s ease;
-  display: inline-flex; /* Align text/icon if any */
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
   line-height: 1.2;
-  margin-right: 10px; /* Space between buttons */
-  margin-top: 10px; /* Space above buttons */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0px); }
 
-button:hover {
-  transform: translateY(-1px); /* Lift effect on hover */
+/* Button Group (Copied from Session 1 Master) */
+.button-group {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem; /* Space above button group */
 }
-button:active {
-    transform: translateY(0px); /* Press effect on click */
-}
+/* Ensure buttons within group don't have extra margin */
+.button-group .btn { margin-right: 0; margin-top: 0;}
 
 /* Specific button colors based on function */
-.evaluate-btn { /* Used for Evaluar Prompt/Enlace/Entrega */
+.evaluate-btn.btn-primary { /* Used for Evaluar buttons */
     background-color: var(--action-blue); /* Blue button */
     color: #fff;
 }
-.evaluate-btn:hover {
+.evaluate-btn.btn-primary:hover {
     background-color: var(--action-blue-dark);
 }
 
-.copy-btn { /* Used for Copy example/text */
+.copy-btn.btn-secondary { /* Used for Copy buttons */
     background-color: var(--secondary-color); /* Yellow button */
-    color: var(--text-color);
+    color: var(--text-dark); /* Dark text on yellow */
 }
-.copy-btn:hover {
+.copy-btn.btn-secondary:hover {
     background-color: var(--secondary-dark);
-    color: var(--text-color);
+    color: var(--text-dark);
+}
+
+.btn-small { /* For small buttons like Copy */
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
 }
 
 button:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
     opacity: 0.7;
-    transform: none; /* No transform when disabled */
+    transform: none;
     box-shadow: none;
+}
+
+/* Responsive button group (Copied from Session 1 Master) */
+@media (max-width: 600px) {
+    .button-group {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .button-group .btn { width: 100%; }
 }
 
 
 /* --- AI Response Display (Adapted from Session 1 Master Feedback) --- */
-/* Base style */
+/* Base style - hidden by default, styled when .visible */
 .ai-response {
-    margin-top: 1.5rem; /* Space above */
-    padding: 1rem 1.25rem; /* Padding from master feedback */
-    border-radius: var(--border-radius);
-    font-size: 0.95rem;
-    border: 1px solid var(--border-color); /* Default border */
-    background-color: #f8f8f8; /* Light grey default */
-    min-height: 48px; /* Min height from master feedback */
-    display: flex; /* Use flexbox */
-    align-items: center; /* Center content vertically */
-    gap: 0.75rem; /* Space for potential icon */
-    white-space: pre-wrap; /* Preserve formatting */
-    word-wrap: break-word;
-    color: var(--text-color); /* Default text color */
+  /* Initial state - hidden and collapsed */
+  display: none;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  margin-top: 0;
+  padding: 0;
+  border: none;
+  background-color: transparent;
+
+  /* Transition properties */
+  transition: opacity var(--transition-speed) ease-out, max-height var(--transition-speed) ease-out, margin-top var(--transition-speed), padding var(--transition-speed), border-color var(--transition-speed), background-color var(--transition-speed);
 }
 
-/* Specific states (match master feedback classes) */
-.ai-response.loading { /* Corresponds to feedback--loading */
+/* When visible, apply base feedback padding/margin/border */
+.ai-response.visible {
+   display: flex; /* Use flex */
+   opacity: 1;
+   max-height: 500px; /* Sufficient height for content */
+   margin-top: 1.5rem;
+   padding: 1rem 1.25rem;
+   border: 1px solid var(--border-color); /* Light grey border for base state */
+   background-color: #f9fafb; /* Light grey background for base state */
+   border-radius: var(--border-radius);
+   font-size: 0.95rem;
+   align-items: center;
+   gap: 0.75rem;
+   white-space: pre-wrap;
+   word-wrap: break-word;
+   color: var(--text-color);
+}
+/* Ensure animation applies */
+.ai-response.animate-feedback.visible {
+    /* Already handled by .visible transition */
+}
+
+
+/* Loading state (Adapted from Session 1 Master feedback--loading) */
+.ai-response.loading {
+  display: flex; /* Needs display: flex to show */
+  opacity: 1; /* Needs opacity 1 to show */
+  max-height: 500px; /* Needs height to show */
+  margin-top: 1.5rem; /* Needs margin to show */
+  padding: 1rem 1.25rem; /* Needs padding to show */
+
   border-color: var(--loading-color);
   background-color: var(--loading-bg);
   color: var(--loading-color);
   font-style: italic;
+  justify-content: center; /* Center spinner/text */
+  align-items: center;
 }
-/* Add feedback icons if you have them */
-/*
-.ai-response::before {
+/* Add loader spinner pseudo-element (Copied from Session 1 Master) */
+.ai-response.loading::before {
     content: '';
     display: inline-block;
-    width: 20px;
-    height: 20px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
+    width: 1.2em;
+    height: 1.2em;
+    border: 0.2em solid rgba(107, 114, 128, 0.3);
+    border-top-color: var(--loading-color);
+    border-radius: 50%;
+    box-sizing: border-box;
+    animation: spin 1s linear infinite;
     flex-shrink: 0;
+    margin-right: 0.75rem;
+    /* Ensure it appears when loading */
+    opacity: 1;
+    width: 20px; height: 20px; /* Adjusted size */
 }
-*/
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Hide content inside when loading */
+.ai-response.loading > *:not(.spinner) {
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+
+/* State colors (Adapted from Session 1 Master --good, --okay, --bad) */
 .ai-response.success { /* Corresponds to feedback--good */
   border-color: var(--success-color);
   background-color: var(--success-bg);
   color: #059669;
 }
-/* .ai-response.success::before { background-image: url('images/feedback-good.png'); } */
-
+/* Add check icon if desired/available */
+/* .ai-response.success::before { content: ''; background-image: url('images/feedback-good.png'); } */
 
 .ai-response.warning { /* Corresponds to feedback--okay */
   border-color: var(--warning-color);
   background-color: var(--warning-bg);
   color: #b45309;
 }
-/* .ai-response.warning::before { background-image: url('images/feedback-okay.png'); } */
+/* Add warning icon if desired/available */
+/* .ai-response.warning::before { content: ''; background-image: url('images/feedback-okay.png'); } */
 
 .ai-response.error { /* Corresponds to feedback--bad */
   border-color: var(--error-color);
   background-color: var(--error-bg);
   color: #dc2626;
-  font-weight: bold;
+  font-weight: bold; /* Keep bold for errors */
 }
-/* .ai-response.error::before { background-image: url('images/feedback-bad.png'); } */
+/* Add error icon if desired/available */
+/* .ai-response.error::before { content: ''; background-image: url('images/feedback-bad.png'); } */
 
 
 /* --- Specific Session 3 Elements --- */
 
-/* File Upload Area */
+/* File Upload Area Styling */
 .file-upload-area {
-    margin-bottom: 15px; /* Space below area */
+    margin-bottom: 1.5rem; /* Space below area */
     padding: 1rem; /* Padding */
     border: 1px dashed var(--border-color); /* Dashed border */
-    background-color: #f3f4f6; /* Light grey background */
+    background-color: #f9fafb; /* Light grey background */
     border-radius: var(--border-radius);
+    display: flex; /* Use flex for label and input */
+    flex-direction: column;
+    gap: 0.5rem; /* Space between label and input */
 }
 
 .file-upload-area label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: 700; /* Bold label */
-    color: var(--text-color);
+    margin-bottom: 0; /* Remove margin since gap is used */
+    font-weight: 500; /* Use medium weight for labels */
+    color: var(--text-dark); /* Dark text */
+    font-size: 1rem;
 }
 
 .file-upload-area input[type="file"] {
-    /* Basic style for file input */
+    /* Override default input styles for file type */
     display: inline-block;
     margin-bottom: 0; /* Remove margin */
     font-size: 0.9em;
@@ -422,19 +559,20 @@ button:disabled {
     background: none;
     min-height: unset;
     width: auto; /* Allow width to be natural */
+    /* Remove focus styles for file input itself, focus will be on the browser's file dialog */
+    box-shadow: none;
 }
 
 .file-name {
     display: block;
-    margin-top: 5px;
+    margin-top: 0.5rem; /* Space above file name */
     font-style: italic;
     color: var(--text-light); /* Muted text */
     font-size: 0.85em;
 }
 
 
-/* Status Indicators (Traffic Lights from Session 3 text) */
-/* These are small circles within the text, not the full component from Session 1 */
+/* Status Indicators (Traffic Lights within text) */
 .status-indicator {
     display: inline-block;
     width: 14px;
@@ -450,29 +588,6 @@ button:disabled {
 .status-red { background-color: var(--error-color); border-color: #c0392b; } /* Use a slightly darker border */
 
 
-/* Exercise 4 Specifics (If included, style like version sections) */
-.exercise4-sandbox {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.version-section {
-    flex: 1;
-    min-width: 300px;
-    padding: 15px;
-    border: 1px dashed var(--border-color); /* Dashed border */
-    border-radius: var(--border-radius);
-    background-color: #f9fafb; /* Light grey background */
-}
-
-.version-section h4 {
-    margin-top: 0;
-    color: var(--text-color);
-    font-weight: 700;
-}
-
-
 /* --- Helper Classes --- */
 .check-icon {
     color: var(--success-color); /* Green check */
@@ -480,37 +595,26 @@ button:disabled {
     font-size: 1.1em;
 }
 
-
+/* Motivational text style (Copied from Session 2, adapted colors) */
 .motivational {
     font-style: italic;
     color: var(--text-light);
     text-align: center;
-    margin-top: 25px;
-    padding-top: 15px;
-    border-top: 1px solid var(--border-color);
+    margin-top: 1.5rem; /* Space above */
+    padding-top: 1.5rem; /* Space above border */
+    border-top: 1px solid var(--border-color); /* Separator border */
 }
 
+
 /* --- Footer (Adapted from Session 1 Master) --- */
-/* Assuming the last section #cierre acts as a footer */
-#cierre {
-    text-align: center;
-    margin-top: 2.5rem; /* Space above */
-    padding: 2rem;
-    color: var(--text-light); /* Muted text */
-    font-size: 1em;
-    border-top: 1px solid var(--border-color);
-    background-color: #f3f4f6; /* Light grey background */
-    border-radius: var(--border-radius);
-    /* box-shadow and border removed as it's the last element and not a card */
-    box-shadow: none;
-    border: none;
-}
-#cierre h2 {
-    color: var(--text-color); /* Darker title */
-    border-bottom: none; /* No line for the final title */
-    padding-bottom: 0;
-    margin-bottom: 1rem;
-    padding-left: 0; /* No number circle here */
+/* Using main-footer class from Session 1 */
+.main-footer {
+  text-align: center;
+  margin-top: 4rem; /* Space above footer */
+  padding-top: 1.5rem; /* Space above border */
+  border-top: 1px solid rgba(255, 255, 255, 0.5); /* White border */
+  color: rgba(255, 255, 255, 0.8); /* Lighter text color */
+  font-size: 0.9rem;
 }
 
 
@@ -521,69 +625,86 @@ button:disabled {
         padding: 0 0.8rem;
     }
 
-    section {
+    .step-section {
         padding: 1.5rem;
         margin-bottom: 1.5rem;
     }
 
     h1 { font-size: 2em; }
-    h2 { font-size: 1.4em; padding-left: 40px; } /* Adjust padding for smaller circle */
+    /* Step header adjusts in Session 1 CSS */
+    .step-header { flex-wrap: wrap; }
+    .step-number { margin-right: 0.5rem; }
+    .step-header h2 { font-size: 1.4em; } /* Adjust H2 size */
     h3 { font-size: 1.1em; }
 
-     .exercise-number-circle { /* Smaller circle */
-         width: 30px;
-         height: 30px;
-         font-size: 1em;
+    .step-image.small-image { max-width: 120px; } /* Smaller images on tablet */
+
+    /* Info blocks responsive */
+     .exercise-info.key-points-container {
+        grid-template-columns: 1fr; /* Stack info blocks */
+        gap: 1rem;
+        padding: 1rem;
      }
-
-    .exercise-info .info-block {
-        min-width: 100%; /* Stack info blocks */
-        margin-bottom: 15px;
-    }
-     .exercise-info {
-         gap: 15px;
-    }
-
-    textarea, input[type="text"] {
-        width: calc(100% - 2px);
-        padding: 0.6rem 0.8rem; /* Adjust padding */
-        font-size: 0.95rem;
-    }
-     input[type="text"] {
-         height: 36px;
-         line-height: 36px;
-         padding: 0 0.8rem;
-     }
-
-
-    button {
-        padding: 0.6rem 1.2rem; /* Smaller button padding */
-        font-size: 0.95em;
-        margin-right: 8px;
-        margin-top: 8px;
-    }
-     /* Stack evaluate buttons if desired - currently uses flex line-break */
+     .info-block.key-point { padding: 0.8rem; }
+     .info-block.key-point p,
+     .info-block.key-point ul,
+     .info-block.key-point ol { font-size: 0.9rem; }
+     .info-block.key-point ul,
+     .info-block.key-point ol { padding-left: 1rem; }
 
 
     .sandbox {
         padding: 1.5rem;
     }
 
-    .file-upload-area {
-        padding: 0.8rem;
+    .sandbox textarea,
+    .sandbox input[type="text"] {
+        padding: 0.6rem 0.8rem; /* Adjust padding */
+        font-size: 0.95rem;
+        margin-bottom: 0.8rem; /* Adjusted margin */
+    }
+    .sandbox input[type="text"] {
+         height: 38px;
+         line-height: 38px;
+         padding: 0 0.8rem;
+         margin-bottom: 0;
     }
 
-     .file-name {
-         font-size: 0.8em;
-     }
+    .button-group { margin-top: 0.8rem; } /* Adjust margin */
+    .button-group .btn { /* Already stacked on small screens by button-group */ }
 
-    .ai-response {
+
+    .file-upload-area {
+        padding: 0.8rem;
+        margin-bottom: 1rem; /* Adjust margin */
+    }
+    .file-upload-area label { font-size: 0.95rem; }
+    .file-name { font-size: 0.8em; }
+
+
+    .ai-response.visible,
+    .ai-response.loading,
+    .ai-response.error {
         padding: 0.8rem 1rem;
+        margin-top: 1rem;
         font-size: 0.9rem;
     }
 
-    #cierre {
-        padding: 1.5rem;
-        margin-top: 1.5rem;
+    .main-footer {
+        margin-top: 2.5rem;
+        padding-top: 1rem;
+    }
+}
+
+/* Further adjustments for very small screens */
+@media (max-width: 480px) {
+    h1 { font-size: 1.8em; }
+    .step-header h2 { font-size: 1.2em; }
+    h3 { font-size: 1em; }
+    .step-image.small-image { max-width: 100px; }
+
+    .btn, .btn-small {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
     }
 }
