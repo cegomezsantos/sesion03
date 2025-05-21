@@ -1,5 +1,88 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+
+    // =================================================================================================//
+
+    // --- New Image Copy Logic ---
+async function copyImageToClipboard(imageSrc, buttonElement) {
+    try {
+        const response = await fetch(imageSrc);
+        if (!response.ok) {
+            throw new Error(`Error al cargar la imagen: ${response.status} ${response.statusText}`);
+        }
+        const blob = await response.blob();
+
+        if (!navigator.clipboard || !navigator.clipboard.write) {
+            console.error('La API del portapapeles (navigator.clipboard.write) no es compatible o no está disponible en este contexto (ej. HTTP).');
+            alert('Error al copiar: Funcionalidad no compatible o contexto inseguro (se requiere HTTPS).');
+            return;
+        }
+        if (!window.ClipboardItem) {
+            console.error('ClipboardItem no es compatible.');
+            alert('Error al copiar: ClipboardItem no compatible.');
+            return;
+        }
+
+
+        // Asegurarse de que el tipo MIME sea uno común si es un blob genérico
+        let finalBlobType = blob.type;
+        if (!finalBlobType || finalBlobType === "application/octet-stream") {
+            // Intentar deducir por la extensión del archivo si es posible, o usar un tipo común
+            const extension = imageSrc.split('.').pop().toLowerCase();
+            if (extension === 'png') finalBlobType = 'image/png';
+            else if (extension === 'jpg' || extension === 'jpeg') finalBlobType = 'image/jpeg';
+            else if (extension === 'gif') finalBlobType = 'image/gif';
+            else if (extension === 'webp') finalBlobType = 'image/webp';
+            else { // Si no se puede deducir y el blob.type es genérico, puede fallar en algunos navegadores
+                console.warn(`Tipo de blob desconocido o genérico: ${blob.type}. Intentando con image/png por defecto.`);
+                finalBlobType = 'image/png'; // Opcional: o simplemente dejar que falle si el tipo no es bueno
+            }
+        }
+
+
+        await navigator.clipboard.write([
+            new ClipboardItem({
+                [finalBlobType]: blob // Usar el tipo de blob real o deducido
+            })
+        ]);
+
+        console.log('Imagen copiada al portapapeles');
+        const originalText = buttonElement.textContent;
+        buttonElement.textContent = '¡Imagen copiada!';
+        setTimeout(() => {
+            buttonElement.textContent = originalText;
+        }, 2000);
+
+    } catch (err) {
+        console.error('Error al copiar la imagen: ', err);
+        let userMessage = 'Error al copiar la imagen.';
+        if (err.name === 'NotAllowedError') {
+            userMessage = 'Permiso para escribir en el portapapeles denegado.';
+        } else if (err.message.includes("must be handling a user gesture")) {
+            userMessage = 'La copia debe ser iniciada por una acción del usuario (clic).';
+        } else if (err.message.toLowerCase().includes("https") || err.message.toLowerCase().includes("secure context")) {
+             userMessage = 'La copia de imágenes al portapapeles requiere un contexto seguro (HTTPS) o localhost.';
+        }
+        alert(userMessage + ' Revisa la consola para más detalles.');
+    }
+}
+
+document.querySelectorAll('.copy-image-btn').forEach(button => {
+    button.addEventListener('click', () => {
+        const imageSrcToCopy = button.dataset.imageSrc;
+        if (imageSrcToCopy) {
+            copyImageToClipboard(imageSrcToCopy, button);
+        } else {
+            console.error('No se especificó la fuente de la imagen para el botón de copiar.');
+            alert('Error: No se encontró la imagen a copiar.');
+        }
+    });
+});
+// --- End New Image Copy Logic ---
+
+    // =================================================================================================//
+
+
     // --- Reusable Copy Button Logic (from Session 2) ---
     document.querySelectorAll('.copy-btn').forEach(button => {
         button.addEventListener('click', () => {

@@ -251,6 +251,15 @@ hr {
     .step-image.small-image { margin-bottom: 1rem; } /* Adjust margin */
 }
 
+/* IMAGENES DE PROCEDIMIENTO COMO EL TUMI */
+
+.responsive-image {
+    width: 100%; /* Ocupa el 100% del ancho del contenedor */
+    max-width: 100%; /* Evita desbordamiento */
+    height: auto; /* Mantiene la proporción */
+    margin-top: 10px; /* Espacio superior */
+    border: 1px solid #ccc; /* Borde */
+}
 
 /* --- Info Blocks (Adapted from exercise-info/info-block, styled with Session 1 palette) --- */
 /* Using key-points-container and key-point for consistency with Session 1 structure ideas */
@@ -406,6 +415,50 @@ button:disabled {
     transform: none;
     box-shadow: none;
 }
+
+/* BOTON DE CAPTURA DE IMAGEN */ 
+
+/* --- Button for Copying Image (Styled like GitHub's Green 'Code' Button) --- */
+.btn-image {
+    background-color: #2da44e; /* Verde principal de GitHub */
+    color: #ffffff; /* Texto blanco */
+    border: 1px solid rgba(27, 31, 36, 0.15); /* Borde sutil de GitHub */
+    border-radius: 6px; /* Radio de borde típico de GitHub */
+    font-weight: 600; /* Un peso de fuente semi-negrita, común en GitHub */
+    
+    /* Ajustes para más espacio interno y mejor alineación del texto */
+    /* Quitamos .btn-small y definimos padding y font-size aquí */
+    padding: 8px 16px; /* Aumenta el padding vertical y horizontal */
+    font-size: 0.9rem;  /* Mantenemos el font-size de .btn-small o ajústalo si es necesario */
+    line-height: 1.5;   /* Aumenta el interlineado para dar más aire vertical al texto */
+
+    /* Sobrescribimos la sombra y transición de la clase .btn base para el look de GitHub */
+    box-shadow: 0 1px 0 rgba(27, 31, 36, 0.04), inset 0 1px 0 hsla(0, 0%, 100%, 0.25);
+    transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+
+    /* Para añadir espacio alrededor del botón (margen) */
+    /* margin-top: 0.5rem;  Ya lo tienes en el estilo en línea */
+    /* margin-bottom: 1rem; Ya lo tienes en el estilo en línea */
+    /* Si quieres más espacio a los lados, puedes añadir: */
+    /* margin-left: 5px; */
+    /* margin-right: 5px; */
+    /* O simplemente margin: 0.5rem 0 1rem 0; (top right bottom left) si quieres ser específico */
+}
+
+.btn-image:hover {
+    background-color: #278c43;
+    border-color: rgba(27, 31, 36, 0.15);
+}
+
+.btn-image:active {
+    background-color: #227839;
+    border-color: rgba(27, 31, 36, 0.15);
+    box-shadow: inset 0 1px 0 hsla(0,0%,100%,0.1);
+}
+
+/* OTROS SELECTORES DISTINTOS AL BOTON */
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0px); }
 
 /* Responsive button group (Copied from Session 1 Master) */
 @media (max-width: 600px) {
