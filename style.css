@@ -643,19 +643,24 @@ button:disabled {
 
 /* --- Helper Classes --- */
 .check-icon {
+    width: 0.8em;
+    height: 0.8em;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 0.5rem;
     color: var(--success-color); /* Green check */
-    font-weight: bold;
-    font-size: 1.1em;
 }
 
-/* Motivational text style (Copied from Session 2, adapted colors) */
+/* Motivational content */
 .motivational {
-    font-style: italic;
-    color: var(--text-light);
+    background: linear-gradient(135deg, 
+        var(--primary-light) 0%, 
+        var(--primary-color) 100%);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    color: #fff;
     text-align: center;
-    margin-top: 1.5rem; /* Space above */
-    padding-top: 1.5rem; /* Space above border */
-    border-top: 1px solid var(--border-color); /* Separator border */
+    margin: 2rem 0;
 }
 
 
@@ -747,6 +752,30 @@ button:disabled {
         margin-top: 2.5rem;
         padding-top: 1rem;
     }
+
+    /* Responsive para sección de felicitaciones */
+    .congratulations-section {
+        padding: 1rem;
+        margin: 2rem 0 1rem 0;
+    }
+
+    .congratulations-card {
+        padding: 1.5rem 1rem;
+    }
+
+    .congratulations-card h2 {
+        font-size: 1.5rem;
+    }
+
+    .congratulations-card p {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .btn-congratulations {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+    }
 }
 
 /* Further adjustments for very small screens */
@@ -760,4 +789,131 @@ button:disabled {
         font-size: 0.9rem;
         padding: 0.5rem 1rem;
     }
+
+    /* Responsive para sección de felicitaciones en móviles pequeños */
+    .congratulations-card h2 {
+        font-size: 1.3rem;
+    }
+
+    .congratulations-card p {
+        font-size: 0.85rem;
+    }
+
+    .btn-congratulations {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* --- Sección de Felicitaciones --- */
+.congratulations-section {
+    margin: 3rem 0 2rem 0;
+    padding: 2rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.congratulations-card {
+    background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+    border: 2px solid #26c6da;
+    border-radius: 12px;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 8px 32px rgba(38, 198, 218, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.congratulations-card::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #00acc1, #26c6da, #4dd0e1, #00acc1);
+    border-radius: 12px;
+    z-index: -1;
+    background-size: 400% 400%;
+    animation: gradientShift 3s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.congratulations-card h2 {
+    color: #00695c;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 4px rgba(0, 105, 92, 0.1);
+}
+
+.congratulations-card p {
+    color: #004d40;
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.congratulations-button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-congratulations {
+    background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+    color: white;
+    padding: 12px 32px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-congratulations::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.btn-congratulations:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+    background: linear-gradient(135deg, #388e3c 0%, #4caf50 100%);
+    text-decoration: none;
+    color: white;
+}
+
+.btn-congratulations:hover::before {
+    left: 100%;
+}
+
+.btn-congratulations:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
 }
